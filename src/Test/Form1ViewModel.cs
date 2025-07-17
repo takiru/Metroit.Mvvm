@@ -4,7 +4,7 @@ using System.Reactive.Linq;
 
 namespace Test
 {
-    public class Form1ViewModel : ViewModelBase
+    public class Form1ViewModel : ReactivePropertyViewModelBase
     {
         public ReactiveProperty<string> Text { get; } = new ReactiveProperty<string>(string.Empty);
 

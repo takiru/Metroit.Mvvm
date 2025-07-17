@@ -4,22 +4,29 @@ using System.Windows.Forms;
 namespace Metroit.Mvvm.WinForms.Views
 {
     /// <summary>
-    /// メイン画面の操作を提供します。
+    /// View の基底となる操作を提供します。
     /// </summary>
     public class ViewBase : Form
     {
         /// <summary>
+        /// 認識済みのViewModel。
+        /// </summary>
+        private ViewModelBase _viewModel;
+
+        /// <summary>
         /// ViewModel を取得します。
         /// </summary>
-        protected ViewModelBase ViewModel { get; }
+        /// <typeparam name="T">ViewModel の具体的な型。</typeparam>
+        /// <returns>ViewModel。</returns>
+        protected T GetViewModel<T>() where T : ViewModelBase
+        {
+            return (T)_viewModel;
+        }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public ViewBase() : base()
-        {
-
-        }
+        public ViewBase() : base() { }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
@@ -27,24 +34,7 @@ namespace Metroit.Mvvm.WinForms.Views
         /// <param name="viewModel">ViewModel。</param>
         public ViewBase(ViewModelBase viewModel) : base()
         {
-            ViewModel = viewModel;
-
-            ViewModel.MessageProvider.ExecuteInformationMessage = message =>
-            {
-                MessageBox.Show(message, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            };
-            ViewModel.MessageProvider.ExecuteConfirmMessage = (message, buttons) =>
-            {
-                return MessageBox.Show(message, Text, buttons, MessageBoxIcon.Question);
-            };
-            ViewModel.MessageProvider.ExecuteWarningMessage = message =>
-            {
-                MessageBox.Show(message, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            };
-            ViewModel.MessageProvider.ExecuteErrorMessage = message =>
-            {
-                MessageBox.Show(message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            };
+            _viewModel = viewModel;
         }
     }
 }

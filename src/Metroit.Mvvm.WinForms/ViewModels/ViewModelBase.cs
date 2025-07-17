@@ -1,15 +1,22 @@
-﻿using Metroit.Mvvm.ViewModels;
-
-namespace Metroit.Mvvm.WinForms.ViewModels
+﻿namespace Metroit.Mvvm.WinForms.ViewModels
 {
     /// <summary>
     /// ViewModel の基底となる操作を提供します。
     /// </summary>
-    public class ViewModelBase : ChangesObservableObject
+    public class ViewModelBase
     {
         /// <summary>
-        /// メッセージを提供します。
+        /// View制御サービスを提供します。
         /// </summary>
-        public MessageProvider MessageProvider { get; } = new MessageProvider();
+        public ViewService ViewService { get; }
+
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
+        /// <param name="viewService">View制御サービス。</param>
+        public ViewModelBase(ViewService viewService)
+        {
+            ViewService = viewService;
+        }
     }
 }

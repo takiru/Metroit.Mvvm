@@ -1,52 +1,51 @@
-﻿using Metroit.DDD.Domain.ValueObjects;
-using System;
+﻿using System;
 
-namespace Metroit.DDD.Application.Services.Generic
+namespace Metroit.DDD.Application.Interfaces
 {
     /// <summary>
     /// ストレージ操作を提供します。
     /// </summary>
-    public interface IStorageService<T> where T : ISingleValueObject
+    public interface IStorageService
     {
         /// <summary>
         /// 指定されたパスが存在するかを確認します。
         /// </summary>
         /// <param name="path">存在を確認するパス。</param>
         /// <returns>存在すれば true、それ以外は false を返却します。</returns>
-        bool Exists(T path);
+        bool Exists(string path);
 
         /// <summary>
         /// 指定されたパスを作成します。
         /// </summary>
         /// <param name="path">作成するパス。</param>
-        void Create(T path);
+        void Create(string path);
 
         /// <summary>
         /// 指定されたパスを作成しようとします。
         /// </summary>
         /// <param name="path">作成するパス。</param>
         /// <returns>作成できた場合は true, それ以外は false を返却します。</returns>
-        bool TryCreate(T path);
+        bool TryCreate(string path);
 
         /// <summary>
         /// 指定されたパスを削除します。
         /// </summary>
         /// <param name="path">削除するパス。</param>
-        void Delete(T path);
+        void Delete(string path);
 
         /// <summary>
         /// 指定されたパスを削除します。
         /// </summary>
         /// <param name="path">削除するパス。</param>
         /// <param name="recursive">階層のあるパスのとき、下の階層まで削除するかどうか。</param>
-        void Delete(T path, bool recursive);
+        void Delete(string path, bool recursive);
 
         /// <summary>
         /// 指定されたパスを削除しようとします。
         /// </summary>
         /// <param name="path">削除するパス。</param>
         /// <returns>作成できた場合は true, それ以外は false を返却します。</returns>
-        bool TryDelete(T path);
+        bool TryDelete(string path);
 
         /// <summary>
         /// 指定されたパスを削除しようとします。
@@ -54,42 +53,42 @@ namespace Metroit.DDD.Application.Services.Generic
         /// <param name="path">削除するパス。</param>
         /// <returns>作成できた場合は true, それ以外は false を返却します。</returns>
         /// <param name="recursive">階層のあるパスのとき、下の階層まで削除するかどうか。</param>
-        bool TryDelete(T path, bool recursive);
+        bool TryDelete(string path, bool recursive);
 
         /// <summary>
         /// パスの作成日時を取得します。
         /// </summary>
         /// <param name="path">作成日時を取得するパス。</param>
         /// <returns>作成日時。</returns>
-        DateTime GetCreationTime(T path);
+        DateTime GetCreationTime(string path);
 
         /// <summary>
         /// パスの更新日時を取得します。
         /// </summary>
         /// <param name="path">更新日時を取得するパス。</param>
         /// <returns>更新日時。</returns>
-        DateTime GetLastWriteTime(T path);
+        DateTime GetLastWriteTime(string path);
 
         /// <summary>
-        /// パスのルートディレクトリを取得します。
+        /// パスのルートパスを取得します。
         /// </summary>
-        /// <param name="path">ルートディレクトリを含むパス。</param>
-        /// <returns>ルートディレクトリ。</returns>
-        string GetPathRoot(T path);
+        /// <param name="path">ルートパスルートパスを含むパス。</param>
+        /// <returns>ルートパス。</returns>
+        string GetPathRoot(string path);
 
         /// <summary>
         /// パスの絶対パスを取得します。
         /// </summary>
         /// <param name="path">絶対パスを取得するパス。</param>
         /// <returns>絶対パス。</returns>
-        string GetFullPath(T path);
+        string GetFullPath(string path);
 
         /// <summary>
         /// パスの親となるパスを取得します。
         /// </summary>
         /// <param name="path">親のパスを含むパス。</param>
         /// <returns>親のパス。</returns>
-        string GetParentPath(T path);
+        string GetParentPath(string path);
 
 #if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         /// <summary>
@@ -98,7 +97,7 @@ namespace Metroit.DDD.Application.Services.Generic
         /// <param name="path"><paramref name="basePath"/> に連結する相対パス。</param>
         /// <param name="basePath">絶対パスの先頭。</param>
         /// <returns>絶対パス。</returns>
-        string GetFullPath(T path, T basePath);
+        string GetFullPath(string path, string basePath);
 
         /// <summary>
         /// あるパスから別のパスへの相対パスを返します。
@@ -106,7 +105,7 @@ namespace Metroit.DDD.Application.Services.Generic
         /// <param name="relativeTo">結果の基準となるソースパス。</param>
         /// <param name="path">ターゲットパス。</param>
         /// <returns>相対パス。</returns>
-        string GetRelativePath(T relativeTo, T path);
+        string GetRelativePath(string relativeTo, string path);
 #endif
     }
 }

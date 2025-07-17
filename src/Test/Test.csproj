@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Metroit.DDD\Metroit.DDD.csproj" />
     <ProjectReference Include="..\Metroit.Mvvm.WinForms.ReactiveProperty\Metroit.Mvvm.WinForms.ReactiveProperty.csproj" />
     <ProjectReference Include="..\Metroit.Mvvm.WinForms\Metroit.Mvvm.WinForms.csproj" />
   </ItemGroup>

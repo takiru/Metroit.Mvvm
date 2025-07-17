@@ -81,10 +81,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Metroit.DDD\Metroit.DDD.csproj">
-      <Project>{6e2cb135-0419-4152-bd0d-6ea22d689962}</Project>
-      <Name>Metroit.DDD</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Metroit.Mvvm.WinForms.ReactiveProperty\Metroit.Mvvm.WinForms.ReactiveProperty.csproj">
       <Project>{772605b8-203f-4694-843f-371f0cedc76e}</Project>
       <Name>Metroit.Mvvm.WinForms.ReactiveProperty</Name>
