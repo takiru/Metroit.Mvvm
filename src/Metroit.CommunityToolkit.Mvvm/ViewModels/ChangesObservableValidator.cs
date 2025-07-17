@@ -8,9 +8,9 @@ namespace Metroit.CommunityToolkit.Mvvm.ViewModels
     /// <summary>
     /// 変更を観察可能なオブジェクトを提供します。
     /// </summary>
-    public partial class ChangesObservableObject : ObservableObject
+    public class ChangesObservableValidator : ObservableValidator
     {
-        private PropertyChangeTracker<ChangesObservableObject> _propertyValueTracker = new PropertyChangeTracker<ChangesObservableObject>();
+        private PropertyChangeTracker<ChangesObservableValidator> _propertyValueTracker = new PropertyChangeTracker<ChangesObservableValidator>();
 
         ///// <summary>
         ///// 公開しているすべてのプロパティまたはフィールドの既定値。
@@ -25,7 +25,7 @@ namespace Metroit.CommunityToolkit.Mvvm.ViewModels
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public ChangesObservableObject()
+        public ChangesObservableValidator()
         {
             ResetOriginalValues();
             PropertyChanged += ChangesObservableObject_PropertyChanged;
@@ -38,6 +38,7 @@ namespace Metroit.CommunityToolkit.Mvvm.ViewModels
         protected void ResetOriginalValues()
         {
             _propertyValueTracker.ResetOriginalValues(this);
+
 
             //_defaultValues.Clear();
             //var properties = GetType().GetProperties(System.Reflection.BindingFlags.Instance |
@@ -59,7 +60,6 @@ namespace Metroit.CommunityToolkit.Mvvm.ViewModels
         private void ChangesObservableObject_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             _propertyValueTracker.TrackingProperty(e.PropertyName);
-
 
 
             //if (e.PropertyName == nameof(IsSomethingValueChanged))
@@ -109,7 +109,6 @@ namespace Metroit.CommunityToolkit.Mvvm.ViewModels
         //    }
         //}
 
-
         /// <summary>
         /// プロパティまたはフィールドの値に変更があったときに発生します。
         /// </summary>
@@ -138,7 +137,6 @@ namespace Metroit.CommunityToolkit.Mvvm.ViewModels
             {
                 yield return changedProperty;
             }
-
 
             //foreach (var changedValue in _changedValues)
             //{
