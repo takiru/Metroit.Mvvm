@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.CommunityToolkit.Mv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm", "Metroit.Mvvm\Metroit.Mvvm.csproj", "{E8EDA220-DAFF-8640-84A5-A78FF2DBCED2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Windows.Forms.Mvvm.Extensions", "Metroit.Windows.Forms.Mvvm.Extensions\Metroit.Windows.Forms.Mvvm.Extensions.csproj", "{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E8EDA220-DAFF-8640-84A5-A78FF2DBCED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8EDA220-DAFF-8640-84A5-A78FF2DBCED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8EDA220-DAFF-8640-84A5-A78FF2DBCED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
