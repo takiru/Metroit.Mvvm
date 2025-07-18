@@ -1,6 +1,7 @@
 ﻿using Metroit.Mvvm.Annotations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -14,7 +15,7 @@ namespace Metroit.Mvvm.ChangeTracking
     /// プロパティは get アクセサーが必要です。
     /// </summary>
     /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
-    public class PropertyChangeTracker<T> where T : class
+    public class PropertyChangeTracker<T> : INotifyPropertyChanged where T : class
     {
         /// <summary>
         /// 変更追跡を行うオブジェクト。
@@ -136,7 +137,8 @@ namespace Metroit.Mvvm.ChangeTracking
                 if (_isSomethingValueChanged != value)
                 {
                     _isSomethingValueChanged = value;
-                    SomethingValueChanged.Invoke(value);
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsSomethingValueChanged)));
+                    SomethingValueChanged?.Invoke(value);
                 }
             }
         }
@@ -145,7 +147,12 @@ namespace Metroit.Mvvm.ChangeTracking
         /// 変更状態に変化があったときに走行します。
         /// 何らかの変更があった場合は true, すべてのプロパティおよびフィールドが既定値だった場合は false を提供します。
         /// </summary>
-        public Action<bool> SomethingValueChanged;
+        public Action<bool> SomethingValueChanged = null;
+
+        /// <summary>
+        /// 変更通知を発生します。
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// プロパティまたはフィールドが変更されたかどうかを取得します。

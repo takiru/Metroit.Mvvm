@@ -17,7 +17,7 @@ namespace Metroit.Mvvm.Abstractions.Interfaces
         /// </summary>
         /// <param name="windowKey">識別キー。</param>
         /// <returns>ダイアログサービス。</returns>
-        IDialogService CreateDialog(string windowKey);
+        IDialogService<T, U> CreateDialog<T, U>(string windowKey) where T : IDialogRequest where U : IDialogResponse;
 
         /// <summary>
         /// 識別キーからダイアログサービスを生成します。
@@ -25,6 +25,6 @@ namespace Metroit.Mvvm.Abstractions.Interfaces
         /// <typeparam name="T">列挙型。</typeparam>
         /// <param name="windowKey">列挙型の識別キー。</param>
         /// <returns>ダイアログサービス。</returns>
-        IDialogService CreateDialog<T>(T windowKey) where T : Enum;
+        IDialogService<T, U> CreateDialog<T, U, V>(V windowKey) where T : IDialogRequest where U : IDialogResponse where V : Enum;
     }
 }

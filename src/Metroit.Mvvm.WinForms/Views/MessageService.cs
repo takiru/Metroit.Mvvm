@@ -59,7 +59,18 @@ namespace Metroit.Mvvm.WinForms.Views
         /// <returns>指示結果。</returns>
         public DialogResult ConfirmYesNo(string message)
         {
-            return ConfirmYesNo(message, Form.ActiveForm.Text);
+            return ConfirmYesNo(message, Form.ActiveForm.Text, (int)MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// 確認メッセージを表示します。
+        /// </summary>
+        /// <param name="message">メッセージ。</param>
+        /// <param name="defaultButton">既定のボタン。</param>
+        /// <returns>指示結果。</returns>
+        public DialogResult ConfirmYesNo(string message, int defaultButton)
+        {
+            return ConfirmYesNo(message, Form.ActiveForm.Text, defaultButton);
         }
 
         /// <summary>
@@ -70,7 +81,19 @@ namespace Metroit.Mvvm.WinForms.Views
         /// <returns>指示結果。</returns>
         public DialogResult ConfirmYesNo(string message, string title)
         {
-            return MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return ConfirmYesNo(message, title, (int)MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// 確認メッセージを表示します。
+        /// </summary>
+        /// <param name="message">メッセージ。</param>
+        /// <param name="title">タイトル。</param>
+        /// <param name="defaultButton">既定のボタン。</param>
+        /// <returns>指示結果。</returns>
+        public DialogResult ConfirmYesNo(string message, string title, int defaultButton)
+        {
+            return MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question, (MessageBoxDefaultButton)defaultButton);
         }
 
         /// <summary>
@@ -80,7 +103,18 @@ namespace Metroit.Mvvm.WinForms.Views
         /// <returns>指示結果。</returns>
         public DialogResult ConfirmYesNoCancel(string message)
         {
-            return ConfirmYesNoCancel(message, Form.ActiveForm.Text);
+            return ConfirmYesNoCancel(message, Form.ActiveForm.Text, (int)MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// 確認メッセージを表示します。
+        /// </summary>
+        /// <param name="message">メッセージ。</param>
+        /// <param name="defaultButton">既定のボタン。</param>
+        /// <returns>指示結果。</returns>
+        public DialogResult ConfirmYesNoCancel(string message, int defaultButton)
+        {
+            return ConfirmYesNoCancel(message, Form.ActiveForm.Text, defaultButton);
         }
 
         /// <summary>
@@ -91,7 +125,19 @@ namespace Metroit.Mvvm.WinForms.Views
         /// <returns>指示結果。</returns>
         public DialogResult ConfirmYesNoCancel(string message, string title)
         {
-            return MessageBox.Show(message, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            return ConfirmYesNoCancel(message, title, (int)MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// 確認メッセージを表示します。
+        /// </summary>
+        /// <param name="message">メッセージ。</param>
+        /// <param name="title">タイトル。</param>
+        /// <param name="defaultButton">既定のボタン。</param>
+        /// <returns>指示結果。</returns>
+        public DialogResult ConfirmYesNoCancel(string message, string title, int defaultButton)
+        {
+            return MessageBox.Show(message, title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, (MessageBoxDefaultButton)defaultButton);
         }
 
         /// <summary>
