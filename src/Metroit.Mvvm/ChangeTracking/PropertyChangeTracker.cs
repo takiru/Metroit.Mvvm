@@ -1,43 +1,90 @@
-﻿using System;
+﻿using Metroit.Mvvm.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Input;
+using System.Reflection;
 
 namespace Metroit.Mvvm.ChangeTracking
 {
     /// <summary>
-    /// オブジェクト内にあるプロパティおよびフィールドの変更追跡を提供します。
-    /// 変更追跡が行われるのは public のプロパティまたはフィールドです。
+    /// オブジェクト内にあるプロパティおよびフィールドの変更追跡を提供します。<br/>
+    /// 変更追跡が行われるのは下記をすべて満たすプロパティまたはフィールドです。<br/>
+    ///   - <see cref="NoTrackingAttribute"/> が設定されていないプロパティまたはフィールド<br/>
+    ///   - <see cref="NoTrackings"/> で指定されていないプロパティまたはフィールド<br/>
     /// プロパティは get アクセサーが必要です。
     /// </summary>
     /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
     public class PropertyChangeTracker<T> where T : class
     {
         /// <summary>
-        /// 公開しているすべてのプロパティまたはフィールドの既定値。
+        /// 変更追跡を行うオブジェクト。
         /// </summary>
-        public Dictionary<string, object> OriginalValues { get; } = new Dictionary<string, object>();
+        private T Instance { get; }
 
         /// <summary>
-        /// 変更されたすべてのプロパティまたはフィールドの値。
+        /// 新しいインスタンスを生成します。
         /// </summary>
-        public Dictionary<string, object> ChangedValues { get; } = new Dictionary<string, object>();
-
-        /// <summary>
-        /// 公開しているすべてのプロパティまたはフィールドの既定値をリセットします。
-        /// </summary>
-        public virtual void ResetOriginalValues(T obj)
+        /// <param name="instance">変更追跡を行うオブジェクト。</param>
+        public PropertyChangeTracker(T instance)
         {
-            OriginalValues.Clear();
-            var properties = obj.GetType().GetProperties(System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.Public |
-                System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.GetField)
-                .Where(x => !typeof(ICommand).IsAssignableFrom(x.PropertyType));
+            Instance = instance;
+        }
+
+        /// <summary>
+        /// 変更追跡を行わないプロパティまたはフィールドの名前のコレクションを取得または設定します。
+        /// </summary>
+        public string[] NoTrackings { get; set; } = { };
+
+        /// <summary>
+        /// 変更追跡を行うプロパティまたはフィールドのコレクション。
+        /// </summary>
+        private List<PropertyChangeEntry> _entries = new List<PropertyChangeEntry>();
+
+        /// <summary>
+        /// 変更追跡を行うプロパティまたはフィールドのコレクションを取得します。
+        /// </summary>
+        public IEnumerable<PropertyChangeEntry> Entries => _entries;
+
+        /// <summary>
+        /// 公開しているすべてのプロパティまたはフィールドの既定値と変更追跡をリセットします。
+        /// </summary>
+        public virtual void Reset()
+        {
+            _entries.Clear();
+
+            var properties = Instance.GetType().GetProperties(BindingFlags.Instance |
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetProperty | BindingFlags.GetField)
+                .Where(x => IsTrackingProperty(x));
 
             foreach (var property in properties)
             {
-                OriginalValues.Add(property.Name, property.GetValue(this));
+                _entries.Add(new PropertyChangeEntry(property.Name, property.GetValue(Instance)));
             }
+        }
+
+        /// <summary>
+        /// 変更追跡を行うプロパティまたはフィールドかどうかを取得する。
+        /// </summary>
+        /// <param name="pi">プロパティ情報。</param>
+        /// <returns>変更追跡を行うプロパティまたはフィールドの場合は true, それ以外は false を返却する。</returns>
+        private bool IsTrackingProperty(PropertyInfo pi)
+        {
+            if (pi.GetCustomAttribute(typeof(NoTrackingAttribute)) != null)
+            {
+                return false;
+            }
+
+            if (NoTrackings == null)
+            {
+                return true;
+            }
+
+            if (NoTrackings.Contains(pi.Name))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -46,33 +93,33 @@ namespace Metroit.Mvvm.ChangeTracking
         /// <param name="propertyName">変更通知が行われたプロパティ名。</param>
         public void TrackingProperty(string propertyName)
         {
-            if (propertyName == nameof(IsSomethingValueChanged))
+            // 追跡対象となっていないプロパティは追跡しない
+            if (!_entries.Any(x => x.PropertyName == propertyName))
             {
                 return;
             }
 
-            var defaultValue = OriginalValues[propertyName];
-            var changedValue = GetType().GetProperty(propertyName)?.GetValue(this);
+            var defaultValue = _entries
+                .Where(x => x.PropertyName == propertyName)
+                .Select(x => x.OriginalValue)
+                .Single();
+            var changedValue = Instance.GetType().GetProperty(propertyName).GetValue(Instance);
+            
+            _entries
+                .Where(x => x.PropertyName == propertyName)
+                .Single()
+                .ChangeValue(changedValue);
 
-            // 既定値に戻ったときには変更値から除去する
+            // 既定値に戻ってすべてのエントリが無変更となったとき、変更状態を初期化する
             if (object.Equals(changedValue, defaultValue))
             {
-                ChangedValues.Remove(propertyName);
-                if (ChangedValues.Count == 0)
+                if (_entries.Where(x => x.Changed).Count() == 0)
                 {
                     IsSomethingValueChanged = false;
                 }
                 return;
             }
 
-            if (ChangedValues.ContainsKey(propertyName))
-            {
-                ChangedValues[propertyName] = changedValue;
-            }
-            else
-            {
-                ChangedValues.Add(propertyName, changedValue);
-            }
             IsSomethingValueChanged = true;
         }
 
@@ -107,7 +154,9 @@ namespace Metroit.Mvvm.ChangeTracking
         /// <returns>プロパティまたはフィールドが変更されていた場合は true, それ以外は false を返却します。</returns>
         public bool ContainsChangedProperty(string propertyName)
         {
-            return ChangedValues.ContainsKey(propertyName);
+            return _entries
+                .Where(x => x.PropertyName == propertyName && x.Changed)
+                .Any();
         }
 
         /// <summary>
@@ -116,9 +165,9 @@ namespace Metroit.Mvvm.ChangeTracking
         /// <returns>変更されたプロパティまたはフィールドのコレクション。</returns>
         public IEnumerable<string> GetChangedProperties()
         {
-            foreach (var changedValue in ChangedValues)
+            foreach (var changedValue in _entries.Where(x => x.Changed))
             {
-                yield return changedValue.Key;
+                yield return changedValue.PropertyName;
             }
         }
     }
