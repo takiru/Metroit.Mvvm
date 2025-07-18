@@ -1,5 +1,5 @@
-﻿using Metroit.Mvvm.Abstractions.Interfaces;
-using System.Windows.Forms;
+﻿using Metroit.Mvvm.Abstractions;
+using Metroit.Mvvm.Abstractions.Interfaces;
 
 namespace Metroit.Mvvm.WinForms.ViewModels
 {
@@ -9,24 +9,24 @@ namespace Metroit.Mvvm.WinForms.ViewModels
     public class ViewService
     {
         /// <summary>
-        /// ダイアログ生成サービスを提供します。
+        /// ダイアログサービスを提供します。
         /// </summary>
-        public IDialogServiceFactory DialogServiceFactory { get; }
+        public IDialogService Dialog { get; }
 
         /// <summary>
         /// メッセージサービスを提供します。
         /// </summary>
-        public IMessageService<DialogResult> MessageService { get; }
+        public IMessageService<DialogResultType> Message { get; }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        /// <param name="dialogServiceFactory">ダイアログ生成サービス。</param>
-        /// <param name="messageService">メッセージサービス。</param>
-        public ViewService(IDialogServiceFactory dialogServiceFactory, IMessageService<DialogResult> messageService)
+        /// <param name="dialog">ダイアログサービス。</param>
+        /// <param name="message">メッセージサービス。</param>
+        public ViewService(IDialogService dialog, IMessageService<DialogResultType> message)
         {
-            DialogServiceFactory = dialogServiceFactory;
-            MessageService = messageService;
+            Dialog = dialog;
+            Message = message;
         }
     }
 }

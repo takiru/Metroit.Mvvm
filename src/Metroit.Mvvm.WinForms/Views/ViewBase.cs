@@ -1,4 +1,5 @@
 ﻿using Metroit.Mvvm.WinForms.ViewModels;
+using System;
 using System.Windows.Forms;
 
 namespace Metroit.Mvvm.WinForms.Views
@@ -12,6 +13,17 @@ namespace Metroit.Mvvm.WinForms.Views
         /// 認識済みのViewModel。
         /// </summary>
         private ViewModelBase _viewModel;
+
+        /// <summary>
+        /// 新たな ViewModel を生成します。
+        /// </summary>
+        /// <typeparam name="T">ViewModel の具体的な型。</typeparam>
+        /// <returns>ViewModel。</returns>
+        protected T NewViewModel<T>(params object[] args) where T : ViewModelBase
+        {
+            _viewModel = (T)Activator.CreateInstance(typeof(T), args);
+            return (T)_viewModel;
+        }
 
         /// <summary>
         /// ViewModel を取得します。

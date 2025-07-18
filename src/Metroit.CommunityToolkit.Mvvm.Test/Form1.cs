@@ -4,7 +4,7 @@ namespace Metroit.CommunityToolkit.Mvvm.Test
 {
     public partial class Form1 : Form
     {
-        private Test ViewModel = new Test();
+        private Form1ViewModel ViewModel = new Form1ViewModel();
 
         public Form1()
         {

@@ -1,47 +1,46 @@
-﻿using Metroit.DDD.ContentRoot;
-using Metroit.DDD.Domain.Annotations;
-using Metroit.DDD.Domain.ValueObjects;
-using Metroit.Mvvm.WinForms.Extensions;
-using Metroit.Mvvm.WinForms.ReactiveProperty.Views;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Windows.Forms;
+﻿using Metroit.Mvvm.WinForms.Test;
+using Metroit.Mvvm.WinForms.ViewModels;
+using Metroit.Mvvm.WinForms.Views;
 
 namespace Test
 {
     public partial class Form1 : ViewBase
     {
-        private new Form1ViewModel ViewModel = new Form1ViewModel();
+        private Form1ViewModel ViewModel;
 
 
         public Form1()
         {
-            try
-            {
-                InitializeComponent();
+            InitializeComponent();
 
-                textBox1.BindText(() => ViewModel.Text.Value);
-                button1.BindClick(ViewModel.TestCommand);
-
-                textBox1.Bind(() => ViewModel.Text.Value);
-                button1.Bind(ViewModel.TestCommand);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            // TODO: DI で MessageService をインスタンス化してシングルトンで登録する
+            var viewService = new ViewService(new DialogService(), new MessageService() { OwnerFormProvider = () => ActiveFormTracker.ActiveForm });
+            ViewModel = NewViewModel<Form1ViewModel>(viewService);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            ViewModel.MessageTest();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ViewModel.Text.Value);
+            ViewModel.DialogTestShow();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ViewModel.DialogTestShowWithParam();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ViewModel.DialogTestShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ViewModel.DialogTestShowDialogWithParam();
         }
     }
 }

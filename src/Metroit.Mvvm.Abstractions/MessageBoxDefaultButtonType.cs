@@ -1,9 +1,9 @@
-﻿namespace Metroit.Mvvm.Abstractions.Interfaces
+﻿namespace Metroit.Mvvm.Abstractions
 {
     /// <summary>
     /// メッセージ ボックスの既定のボタンを指定します。
     /// </summary>
-    public enum MessageBoxDefaultButton
+    public enum MessageBoxDefaultButtonType
     {
         /// <summary>
         /// メッセージ ボックスの 1 番目のボタンが既定のボタンです。

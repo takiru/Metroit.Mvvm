@@ -4,10 +4,8 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Resource1.ja-JP.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <Compile Update="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

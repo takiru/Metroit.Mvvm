@@ -3,30 +3,34 @@
     /// <summary>
     /// ダイアログのサービスを提供します。
     /// </summary>
-    public interface IDialogService<T, U> where T : IDialogRequest where U : IDialogResponse
+    public interface IDialogService
     {
         /// <summary>
         /// ダイアログをモーダレスで表示します。
         /// </summary>
-        void Show();
+        /// <param name="windowKey">識別キー。</param>
+        void Show(string windowKey);
 
         /// <summary>
         /// ダイアログをモーダレスで表示します。
         /// </summary>
+        /// <param name="windowKey">識別キー。</param>
         /// <param name="request">リクエスト情報。</param>
-        void Show(T request);
+        void Show(string windowKey, IDialogRequest request);
 
         /// <summary>
         /// ダイアログをモーダルで表示します。
         /// </summary>
+        /// <param name="windowKey">識別キー。</param>
         /// <returns>レスポンス情報。</returns>
-        T ShowDialog();
+        IDialogResponse ShowDialog(string windowKey);
 
         /// <summary>
         /// ダイアログをモーダルで表示します。
         /// </summary>
+        /// <param name="windowKey">識別キー。</param>
         /// <param name="request">リクエスト情報。</param>
         /// <returns>レスポンス情報。</returns>
-        U ShowDialog(T request);
+        IDialogResponse ShowDialog(string windowKey, IDialogRequest request);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Metroit.Mvvm.Abstractions.Interfaces
+﻿using System;
+
+namespace Metroit.Mvvm.Abstractions.Interfaces
 {
     /// <summary>
     /// メッセージのサービスを提供します。
@@ -6,6 +8,11 @@
     /// <typeparam name="T">指示結果の型。</typeparam>
     public interface IMessageService<T>
     {
+        /// <summary>
+        /// メッセージを表示するオーナーを取得します。
+        /// </summary>
+        Func<object> OwnerFormProvider { get; set; }
+
         /// <summary>
         /// 情報メッセージを表示します。
         /// </summary>
@@ -32,7 +39,7 @@
         /// <param name="message">メッセージ。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNo(string message, MessageBoxDefaultButton defaultButton);
+        T ConfirmYesNo(string message, MessageBoxDefaultButtonType defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -49,7 +56,7 @@
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNo(string message, string title, MessageBoxDefaultButton defaultButton);
+        T ConfirmYesNo(string message, string title, MessageBoxDefaultButtonType defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -64,7 +71,7 @@
         /// <param name="message">メッセージ。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNoCancel(string message, MessageBoxDefaultButton defaultButton);
+        T ConfirmYesNoCancel(string message, MessageBoxDefaultButtonType defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -81,7 +88,7 @@
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNoCancel(string message, string title, MessageBoxDefaultButton defaultButton);
+        T ConfirmYesNoCancel(string message, string title, MessageBoxDefaultButtonType defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -96,7 +103,7 @@
         /// <param name="message">メッセージ。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmOkCancel(string message, MessageBoxDefaultButton defaultButton);
+        T ConfirmOkCancel(string message, MessageBoxDefaultButtonType defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -113,7 +120,7 @@
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmOkCancel(string message, string title, MessageBoxDefaultButton defaultButton);
+        T ConfirmOkCancel(string message, string title, MessageBoxDefaultButtonType defaultButton);
 
         /// <summary>
         /// 警告メッセージを表示します。

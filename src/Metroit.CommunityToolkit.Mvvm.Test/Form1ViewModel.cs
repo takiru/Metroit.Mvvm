@@ -4,9 +4,9 @@ using Metroit.Annotations;
 
 namespace Metroit.CommunityToolkit.Mvvm.Test
 {
-    public partial class Test : TrackingObservableObject
+    public partial class Form1ViewModel : TrackingObservableObject
     {
-        public Test()
+        public Form1ViewModel()
         {
             ChangeTracker.NoTrackings = new string[] {
                 nameof(IsChanged)
