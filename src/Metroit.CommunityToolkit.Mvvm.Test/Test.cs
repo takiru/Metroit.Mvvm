@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Metroit.Mvvm.Annotations;
+using Metroit.Annotations;
 
 namespace Metroit.CommunityToolkit.Mvvm.Test
 {

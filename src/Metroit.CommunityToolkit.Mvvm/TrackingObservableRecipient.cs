@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Metroit.Mvvm.Annotations;
-using Metroit.Mvvm.ChangeTracking;
+using Metroit.Annotations;
+using Metroit.ChangeTracking;
 using System.ComponentModel;
 
 namespace Metroit.CommunityToolkit.Mvvm

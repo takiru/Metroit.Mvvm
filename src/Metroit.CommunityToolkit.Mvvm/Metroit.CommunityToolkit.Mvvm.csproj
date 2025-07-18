@@ -8,14 +8,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ViewModels\" />
+		<PackageReference Include="Metroit" Version="2.1.0" />
 	</ItemGroup>
 
 </Project>

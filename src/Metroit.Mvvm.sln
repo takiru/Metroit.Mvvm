@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm.WinForms.ReactiveProperty", "Metroit.Mvvm.WinForms.ReactiveProperty\Metroit.Mvvm.WinForms.ReactiveProperty.csproj", "{772605B8-203F-4694-843F-371F0CEDC76E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm", "Metroit.Mvvm\Metroit.Mvvm.csproj", "{777DA50B-199B-4F40-B365-C1DBADD6CBCE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm.Test", "Metroit.Mvvm.Test\Metroit.Mvvm.Test.csproj", "{F490EC1C-4212-452B-A4C2-D4A4E3EBCC52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm.WinForms", "Metroit.Mvvm.WinForms\Metroit.Mvvm.WinForms.csproj", "{3B7B5EC0-DCEE-4919-9EEC-2D0D782D7FE8}"
@@ -18,8 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.CommunityToolkit.Mvvm.WinForms", "Metroit.CommunityToolkit.Mvvm.WinForms\Metroit.CommunityToolkit.Mvvm.WinForms.csproj", "{8B383139-776F-4B6D-BBE5-2305CD121AC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm.Abstractions", "Metroit.Mvvm.Abstractions\Metroit.Mvvm.Abstractions.csproj", "{61960895-47E1-4861-9ADA-607FFD179A5E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityToolkit.Mvvm.Test", "CommunityToolkit.Mvvm.Test\CommunityToolkit.Mvvm.Test.csproj", "{41A52B2D-F347-45A3-84B6-16F00FDEE79D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.CommunityToolkit.Mvvm.Test", "Metroit.CommunityToolkit.Mvvm.Test\Metroit.CommunityToolkit.Mvvm.Test.csproj", "{DF090137-794A-4E20-8DB8-B76B6F12095F}"
 EndProject
@@ -37,10 +33,6 @@ Global
 		{772605B8-203F-4694-843F-371F0CEDC76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{772605B8-203F-4694-843F-371F0CEDC76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{772605B8-203F-4694-843F-371F0CEDC76E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{777DA50B-199B-4F40-B365-C1DBADD6CBCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{777DA50B-199B-4F40-B365-C1DBADD6CBCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{777DA50B-199B-4F40-B365-C1DBADD6CBCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{777DA50B-199B-4F40-B365-C1DBADD6CBCE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F490EC1C-4212-452B-A4C2-D4A4E3EBCC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F490EC1C-4212-452B-A4C2-D4A4E3EBCC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F490EC1C-4212-452B-A4C2-D4A4E3EBCC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,10 +53,6 @@ Global
 		{61960895-47E1-4861-9ADA-607FFD179A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61960895-47E1-4861-9ADA-607FFD179A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61960895-47E1-4861-9ADA-607FFD179A5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41A52B2D-F347-45A3-84B6-16F00FDEE79D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41A52B2D-F347-45A3-84B6-16F00FDEE79D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41A52B2D-F347-45A3-84B6-16F00FDEE79D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41A52B2D-F347-45A3-84B6-16F00FDEE79D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF090137-794A-4E20-8DB8-B76B6F12095F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF090137-794A-4E20-8DB8-B76B6F12095F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF090137-794A-4E20-8DB8-B76B6F12095F}.Release|Any CPU.ActiveCfg = Release|Any CPU
