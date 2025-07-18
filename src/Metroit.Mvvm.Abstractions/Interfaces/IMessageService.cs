@@ -32,7 +32,7 @@
         /// <param name="message">メッセージ。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNo(string message, int defaultButton);
+        T ConfirmYesNo(string message, MessageBoxDefaultButton defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -49,7 +49,7 @@
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNo(string message, string title,int defaultButton);
+        T ConfirmYesNo(string message, string title, MessageBoxDefaultButton defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -64,7 +64,7 @@
         /// <param name="message">メッセージ。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNoCancel(string message, int defaultButton);
+        T ConfirmYesNoCancel(string message, MessageBoxDefaultButton defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -81,7 +81,7 @@
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmYesNoCancel(string message, string title, int defaultButton);
+        T ConfirmYesNoCancel(string message, string title, MessageBoxDefaultButton defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -96,7 +96,7 @@
         /// <param name="message">メッセージ。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmOkCancel(string message, int defaultButton);
+        T ConfirmOkCancel(string message, MessageBoxDefaultButton defaultButton);
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -113,7 +113,7 @@
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        T ConfirmOkCancel(string message, string title, int defaultButton);
+        T ConfirmOkCancel(string message, string title, MessageBoxDefaultButton defaultButton);
 
         /// <summary>
         /// 警告メッセージを表示します。
