@@ -1,7 +1,6 @@
-﻿using Metroit.Mvvm.Abstractions;
-using Metroit.Mvvm.Abstractions.Interfaces;
+﻿using Metroit.Mvvm.Interfaces;
 
-namespace Metroit.Mvvm.WinForms.ViewModels
+namespace Metroit.Mvvm.ViewModels
 {
     /// <summary>
     /// View に関する制御用のサービスを提供します。

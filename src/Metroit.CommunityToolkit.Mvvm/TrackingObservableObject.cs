@@ -8,7 +8,7 @@ namespace Metroit.CommunityToolkit.Mvvm
     /// <summary>
     /// 変更追跡が可能なオブジェクトを提供します。
     /// </summary>
-    public partial class TrackingObservableObject : ObservableObject
+    public class TrackingObservableObject : ObservableObject
     {
         private PropertyChangeTracker<TrackingObservableObject> _propertyValueTracker;
 

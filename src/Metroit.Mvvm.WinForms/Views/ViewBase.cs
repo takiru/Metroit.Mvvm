@@ -1,4 +1,4 @@
-﻿using Metroit.Mvvm.WinForms.ViewModels;
+﻿using Metroit.Mvvm.ViewModels;
 using System;
 using System.Windows.Forms;
 

@@ -1,6 +1,6 @@
-﻿using Metroit.Mvvm.Abstractions;
+﻿using Metroit.Mvvm;
+using Metroit.Mvvm.ViewModels;
 using Metroit.Mvvm.WinForms.Test;
-using Metroit.Mvvm.WinForms.ViewModels;
 using System.Diagnostics;
 
 namespace Test

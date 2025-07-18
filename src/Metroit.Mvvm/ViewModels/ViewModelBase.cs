@@ -1,4 +1,4 @@
-﻿namespace Metroit.Mvvm.WinForms.ViewModels
+﻿namespace Metroit.Mvvm.ViewModels
 {
     /// <summary>
     /// ViewModel の基底となる操作を提供します。
@@ -9,6 +9,11 @@
         /// View制御サービスを提供します。
         /// </summary>
         public ViewService ViewService { get; }
+
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
+        public ViewModelBase() { }
 
         /// <summary>
         /// 新しいインスタンスを生成します。

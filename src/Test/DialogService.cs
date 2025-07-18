@@ -1,9 +1,4 @@
-﻿using Metroit.Mvvm.Abstractions.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Metroit.Mvvm.Interfaces;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
@@ -29,7 +24,7 @@ namespace Metroit.Mvvm.WinForms.Test
 
         public DialogService()
         {
-            
+
         }
 
         public void Show(string windowKey)

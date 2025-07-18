@@ -1,4 +1,4 @@
-﻿using Metroit.Mvvm.Abstractions.Interfaces;
+﻿using Metroit.Mvvm.Interfaces;
 using System.Windows.Forms;
 
 namespace Metroit.Mvvm.WinForms.ViewModels

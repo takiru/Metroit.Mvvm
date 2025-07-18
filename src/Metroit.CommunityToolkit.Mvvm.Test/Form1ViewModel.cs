@@ -1,10 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Metroit.Annotations;
+using Metroit.Mvvm.ViewModels;
 
 namespace Metroit.CommunityToolkit.Mvvm.Test
 {
-    public partial class Form1ViewModel : TrackingObservableObject
+    public partial class Form1ViewModel : TrackingObservableObjectViewModelBase
     {
         public Form1ViewModel()
         {

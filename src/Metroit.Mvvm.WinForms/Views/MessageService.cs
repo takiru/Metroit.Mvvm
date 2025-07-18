@@ -1,5 +1,4 @@
-﻿using Metroit.Mvvm.Abstractions;
-using Metroit.Mvvm.Abstractions.Interfaces;
+﻿using Metroit.Mvvm.Interfaces;
 using System;
 using System.Diagnostics;
 using System.Reflection;

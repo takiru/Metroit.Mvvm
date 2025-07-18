@@ -11,4 +11,8 @@
 		<PackageReference Include="Metroit" Version="2.1.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
+	</ItemGroup>
+
 </Project>

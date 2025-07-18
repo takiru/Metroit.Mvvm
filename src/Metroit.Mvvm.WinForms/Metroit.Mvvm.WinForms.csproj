@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Metroit.Mvvm.Abstractions\Metroit.Mvvm.Abstractions.csproj" />
+    <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
   </ItemGroup>
 
 </Project>
