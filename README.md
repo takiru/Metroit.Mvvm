@@ -43,7 +43,7 @@ Extensions.PropertyBindExtensions allows you to create Extensions that are not p
     It has a constructor that can recognize the ViewModel through DI.  
     You can obtain the recognized ViewModel.
 
-## Metroit.CommunityToolkit.Mvvm
+## Metroit.CommunityToolkit.Mvvm Description
 Provides convenient functions using CommunityToolkit.Mvvm.
 
 Provides an object whose value can be tracked for changes.
@@ -56,7 +56,7 @@ Constructor with ViewService as an argument.
   - TrackingObservableRecipientViewModelBase
   - TrackingObservableValidatorViewModelBase
 
-## Metroit.Windows.Forms.Mvvm.Extensions
+## Metroit.Windows.Forms.Mvvm.Extensions Description
 It helps to bind properties of Metroit.Windows.Forms specific classes to DataBinding of controls.
   - AutoCompleteBoxExtensions
   - PropertyBindExtensions
