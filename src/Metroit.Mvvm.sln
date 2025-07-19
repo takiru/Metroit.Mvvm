@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm.WinForms.Test", "Test\Metroit.Mvvm.WinForms.Test.csproj", "{0B57FA2F-25F0-4444-8E19-4D9D1274B1C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm.WinForms.Test", "Metroit.Mvvm.WinForms.Test\Metroit.Mvvm.WinForms.Test.csproj", "{0B57FA2F-25F0-4444-8E19-4D9D1274B1C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm.WinForms", "Metroit.Mvvm.WinForms\Metroit.Mvvm.WinForms.csproj", "{3B7B5EC0-DCEE-4919-9EEC-2D0D782D7FE8}"
 EndProject
