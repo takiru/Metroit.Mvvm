@@ -1,4 +1,6 @@
-﻿namespace Metroit.Mvvm.WinForms.Test
+﻿using System.Windows.Forms;
+
+namespace Metroit.Mvvm.WinForms
 {
     /// <summary>
     /// アクティブなフォームの追跡を提供します。

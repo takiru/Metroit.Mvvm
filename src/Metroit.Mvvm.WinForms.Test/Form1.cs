@@ -1,4 +1,5 @@
 ﻿using Metroit.Mvvm.ViewModels;
+using Metroit.Mvvm.WinForms;
 using Metroit.Mvvm.WinForms.Test;
 using Metroit.Mvvm.WinForms.Views;
 
