@@ -4,6 +4,22 @@
 		<TargetFrameworks>net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>disable</Nullable>
+		<Authors>Takeru Yamaguchi</Authors>
+		<Description>Provides extended functionality using CommunityToolkit.Mvvm.</Description>
+		<Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
+		<VersionPrefix>0.0.1</VersionPrefix>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<FileVersion>$(VersionPrefix)</FileVersion>
+		<PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/takiru/Metroit.Mvvm</RepositoryUrl>
+		<PackageTags>MVVM</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageReleaseNotes>
+			small released.
+		</PackageReleaseNotes>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
+		<ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
 	</ItemGroup>
 
 </Project>

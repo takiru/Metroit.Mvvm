@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Mvvm", "Metroit.Mvv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Windows.Forms.Mvvm.Extensions", "Metroit.Windows.Forms.Mvvm.Extensions\Metroit.Windows.Forms.Mvvm.Extensions.csproj", "{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Windows.Forms.Mvvm.Extensions.Test", "Metroit.Windows.Forms.Mvvm.Extensions.Test\Metroit.Windows.Forms.Mvvm.Extensions.Test.csproj", "{0FF08146-6977-44EA-9096-151E42FEEB2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,9 +49,18 @@ Global
 		{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF5B62F5-AEA2-D39B-A627-960CB138B0B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF08146-6977-44EA-9096-151E42FEEB2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF08146-6977-44EA-9096-151E42FEEB2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF08146-6977-44EA-9096-151E42FEEB2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF08146-6977-44EA-9096-151E42FEEB2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B57FA2F-25F0-4444-8E19-4D9D1274B1C6} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{DF090137-794A-4E20-8DB8-B76B6F12095F} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{0FF08146-6977-44EA-9096-151E42FEEB2F} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77DE6570-9BA8-44DE-8142-E0AAB07967A5}

@@ -5,6 +5,22 @@
 		<Nullable>disable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>disable</ImplicitUsings>
+		<Authors>Takeru Yamaguchi</Authors>
+		<Description>It provides a native MVVM implementation included with Metroit.Windows.Forms.</Description>
+		<Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
+		<VersionPrefix>0.0.1</VersionPrefix>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<FileVersion>$(VersionPrefix)</FileVersion>
+		<PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/takiru/Metroit.Mvvm</RepositoryUrl>
+		<PackageTags>MVVM</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageReleaseNotes>
+			small released.
+		</PackageReleaseNotes>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

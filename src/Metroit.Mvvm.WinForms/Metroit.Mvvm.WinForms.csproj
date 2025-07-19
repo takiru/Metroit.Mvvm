@@ -1,14 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net8.0-windows;net462</TargetFrameworks>
-    <Nullable>disable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>disable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-windows;net462</TargetFrameworks>
+		<Nullable>disable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Authors>Takeru Yamaguchi</Authors>
+		<Description>It provides functionality to easily implement MVVM in Windows Forms.</Description>
+		<Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
+		<VersionPrefix>0.0.1</VersionPrefix>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<FileVersion>$(VersionPrefix)</FileVersion>
+		<PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/takiru/Metroit.Mvvm</RepositoryUrl>
+		<PackageTags>MVVM</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageReleaseNotes>
+			small released.
+		</PackageReleaseNotes>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
+	</ItemGroup>
 
 </Project>
