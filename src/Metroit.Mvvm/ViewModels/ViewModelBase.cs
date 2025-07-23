@@ -3,7 +3,7 @@
     /// <summary>
     /// ViewModel の基底となる操作を提供します。
     /// </summary>
-    public class ViewModelBase
+    public abstract class ViewModelBase
     {
         /// <summary>
         /// View制御サービスを提供します。

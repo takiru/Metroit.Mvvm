@@ -1,15 +1,18 @@
-﻿using Metroit.Mvvm.ViewModels;
+﻿using Metroit.Annotations;
+using Metroit.Mvvm.ViewModels;
 
 namespace Metroit.CommunityToolkit.Mvvm
 {
     /// <summary>
     /// ViewModel の基底となる操作を提供します。
     /// </summary>
-    public class TrackingObservableRecipientViewModelBase : TrackingObservableObject
+    /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
+    public abstract class TrackingObservableRecipientViewModelBase<T> : TrackingObservableRecipient<T> where T : class
     {
         /// <summary>
         /// View制御サービスを提供します。
         /// </summary>
+        [NoTracking]
         public ViewService ViewService { get; }
 
         /// <summary>

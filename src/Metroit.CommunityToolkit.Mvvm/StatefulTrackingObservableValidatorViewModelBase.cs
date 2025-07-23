@@ -6,7 +6,8 @@ namespace Metroit.CommunityToolkit.Mvvm
     /// <summary>
     /// ViewModel の基底となる操作を提供します。
     /// </summary>
-    public abstract class TrackingObservableValidatorViewModelBase<T> : TrackingObservableValidator<T> where T : class
+    /// <typeparam name="T">状態管理と変更追跡を行うクラス。</typeparam>
+    public abstract class StatefulTrackingObservableValidatorViewModelBase<T> : StatefulTrackingObservableValidator<T> where T : class
     {
         /// <summary>
         /// View制御サービスを提供します。
@@ -17,13 +18,13 @@ namespace Metroit.CommunityToolkit.Mvvm
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public TrackingObservableValidatorViewModelBase() { }
+        public StatefulTrackingObservableValidatorViewModelBase() : base() { }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
         /// <param name="viewService">View制御サービス。</param>
-        public TrackingObservableValidatorViewModelBase(ViewService viewService)
+        public StatefulTrackingObservableValidatorViewModelBase(ViewService viewService) : base()
         {
             ViewService = viewService;
         }

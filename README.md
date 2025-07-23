@@ -2,10 +2,10 @@
 
 |Module                |NuGet | Target Framework |
 |----------------------|------|------------------|
-|Metroit.Mvvm               |[![NuGet](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm/) | `net6.0` `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` |
-|Metroit.Mvvm.WinForms          |[![NuGet](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm.WinForms/) | `net8.0-windows` `net462` |
-|Metroit.CommunityToolkit.Mvvm |[![NuGet](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.CommunityToolkit.Mvvm/) | `net8.0` `netstandard2.0` `netstandard2.1` |
-|Metroit.Windows.Forms.Mvvm.Extensions |[![NuGet](https://img.shields.io/badge/nuget-v0.0.1-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm.Extensions/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Mvvm               |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm/) | `net6.0` `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` |
+|Metroit.Mvvm.WinForms          |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm.WinForms/) | `net8.0-windows` `net462` |
+|Metroit.CommunityToolkit.Mvvm |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.CommunityToolkit.Mvvm/) | `net8.0` `netstandard2.0` `netstandard2.1` |
+|Metroit.Windows.Forms.Mvvm.Extensions |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm.Extensions/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 ## Metroit.Mvvm Description
 - DialogResultType
@@ -50,11 +50,17 @@ Provides an object whose value can be tracked for changes.
   - TrackingObservableObject
   - TrackingObservableRecipient
   - TrackingObservableValidator
+  - StatefulTrackingObservableObject
+  - StatefulTrackingObservableRecipient
+  - StatefulTrackingObservableValidator
 
 Constructor with ViewService as an argument.
   - TrackingObservableObjectViewModelBase
   - TrackingObservableRecipientViewModelBase
   - TrackingObservableValidatorViewModelBase
+  - StatefulTrackingObservableObjectViewModelBase
+  - StatefulTrackingObservableRecipientViewModelBase
+  - StatefulTrackingObservableValidatorViewModelBase
 
 ## Metroit.Windows.Forms.Mvvm.Extensions Description
 It helps to bind properties of Metroit.Windows.Forms specific classes to DataBinding of controls.

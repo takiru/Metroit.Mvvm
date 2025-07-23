@@ -1,34 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-		<ImplicitUsings>disable</ImplicitUsings>
-		<Nullable>disable</Nullable>
-		<Authors>Takeru Yamaguchi</Authors>
-		<Description>Provides convenient functions using CommunityToolkit.Mvvm.</Description>
-		<Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-		<VersionPrefix>0.0.1</VersionPrefix>
-		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
-		<FileVersion>$(VersionPrefix)</FileVersion>
-		<PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/takiru/Metroit.Mvvm</RepositoryUrl>
-		<PackageTags>MVVM</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageReleaseNotes>
-			small released.
-		</PackageReleaseNotes>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Authors>Takeru Yamaguchi</Authors>
+    <Description>Provides convenient functions using CommunityToolkit.Mvvm.</Description>
+    <Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
+    <VersionPrefix>0.0.2</VersionPrefix>
+    <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+    <FileVersion>$(VersionPrefix)</FileVersion>
+    <PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/takiru/Metroit.Mvvm</RepositoryUrl>
+    <PackageTags>MVVM</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageReleaseNotes>
+      Reviewed
+      - TrackingObservableObject
+      - TrackingObservableObjectViewModelBase
+      - TrackingObservableRecipient
+      - TrackingObservableRecipientViewModelBase
+      - TrackingObservableValidator
+      - TrackingObservableValidatorViewModelBase
 
-	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-		<PackageReference Include="Metroit" Version="2.1.0" />
-	</ItemGroup>
+      Added
+      - TrackingObservableObjectWithState
+      - TrackingObservableObjectWithStateViewModelBase
+      - TrackingObservableRecipientWithState
+      - TrackingObservableRecipientWithStateViewModelBase
+      - TrackingObservableValidatorWithState
+      - TrackingObservableValidatorWithStateViewModelBase
+    </PackageReleaseNotes>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Metroit" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
+  </ItemGroup>
 
 </Project>
