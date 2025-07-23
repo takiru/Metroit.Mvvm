@@ -26,19 +26,19 @@
       - TrackingObservableValidatorViewModelBase
 
       Added
-      - TrackingObservableObjectWithState
-      - TrackingObservableObjectWithStateViewModelBase
-      - TrackingObservableRecipientWithState
-      - TrackingObservableRecipientWithStateViewModelBase
-      - TrackingObservableValidatorWithState
-      - TrackingObservableValidatorWithStateViewModelBase
+      - StatefulTrackingObservableObject
+      - StatefulTrackingObservableObjectViewModelBase
+      - StatefulTrackingObservableRecipient
+      - StatefulTrackingObservableRecipientViewModelBase
+      - StatefulTrackingObservableValidator
+      - StatefulTrackingObservableValidatorViewModelBase
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Metroit" Version="3.0.0" />
+    <PackageReference Include="Metroit" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>

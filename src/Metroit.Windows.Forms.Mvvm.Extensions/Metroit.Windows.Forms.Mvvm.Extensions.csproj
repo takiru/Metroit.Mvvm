@@ -23,10 +23,6 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Metroit.Windows.Forms" Version="3.1.2" />
-	</ItemGroup>
-
 	<Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">
 		<ItemGroup>
 			<ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.WinForms' And '$(UseWindowsForms)' != 'true'" />
@@ -34,4 +30,8 @@
 			<Reference Remove="@(ReferenceToBeRemoved)" />
 		</ItemGroup>
 	</Target>
+
+	<ItemGroup>
+	  <PackageReference Include="Metroit.Windows.Forms" Version="3.1.5" />
+	</ItemGroup>
 </Project>
