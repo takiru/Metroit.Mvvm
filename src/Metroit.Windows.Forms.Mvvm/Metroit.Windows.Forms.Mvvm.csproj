@@ -34,4 +34,8 @@
 	<ItemGroup>
 	  <PackageReference Include="Metroit.Windows.Forms" Version="3.1.5" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
+	</ItemGroup>
 </Project>

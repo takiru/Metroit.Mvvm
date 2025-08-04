@@ -5,7 +5,7 @@
 |Metroit.Mvvm               |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm/) | `net6.0` `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` |
 |Metroit.Mvvm.WinForms          |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm.WinForms/) | `net8.0-windows` `net462` |
 |Metroit.CommunityToolkit.Mvvm |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.CommunityToolkit.Mvvm/) | `net8.0` `netstandard2.0` `netstandard2.1` |
-|Metroit.Windows.Forms.Mvvm.Extensions |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm.Extensions/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Windows.Forms.Mvvm.|[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 ## Metroit.Mvvm Description
 - DialogResultType
@@ -62,12 +62,16 @@ Constructor with ViewService as an argument.
   - StatefulTrackingObservableRecipientViewModelBase
   - StatefulTrackingObservableValidatorViewModelBase
 
-## Metroit.Windows.Forms.Mvvm.Extensions Description
+## Metroit.Windows.Forms.Mvvm Description
 It helps to bind properties of Metroit.Windows.Forms specific classes to DataBinding of controls.
-  - AutoCompleteBoxExtensions
-  - PropertyBindExtensions
+  - Extensions.AutoCompleteBoxExtensions
+  - Extensions.PropertyBindExtensions
 
     ```
-    PropertyBindExtensions is for AutoCompleteBoxExtensions.There is no need to actively use it.
+    Extensions.PropertyBindExtensions is for Extensions.AutoCompleteBoxExtensions.There is no need to actively use it.
     ```
 
+- Views.MetViewBase  
+    You can generate a ViewModel that is recognized by the View.  
+    It has a constructor that can recognize the ViewModel through DI.  
+    You can obtain the recognized ViewModel.
