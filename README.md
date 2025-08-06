@@ -2,10 +2,10 @@
 
 |Module                |NuGet | Target Framework |
 |----------------------|------|------------------|
-|Metroit.Mvvm               |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm/) | `net6.0` `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` |
-|Metroit.Mvvm.WinForms          |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm.WinForms/) | `net8.0-windows` `net462` |
-|Metroit.CommunityToolkit.Mvvm |[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.CommunityToolkit.Mvvm/) | `net8.0` `netstandard2.0` `netstandard2.1` |
-|Metroit.Windows.Forms.Mvvm|[![NuGet](https://img.shields.io/badge/nuget-v0.0.2-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.Mvvm               |[![NuGet](https://img.shields.io/badge/nuget-v0.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm/) | `net6.0` `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` |
+|Metroit.Mvvm.WinForms          |[![NuGet](https://img.shields.io/badge/nuget-v0.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm.WinForms/) | `net8.0-windows` `net462` |
+|Metroit.CommunityToolkit.Mvvm |[![NuGet](https://img.shields.io/badge/nuget-v0.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.CommunityToolkit.Mvvm/) | `net8.0` `netstandard2.0` `netstandard2.1` |
+|Metroit.Windows.Forms.Mvvm|[![NuGet](https://img.shields.io/badge/nuget-v0.0.3-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm/) | `net6.0-windows` `net8.0-windows` `net462` |
 
 ## Metroit.Mvvm Description
 - DialogResultType
@@ -14,6 +14,8 @@
 - Interfaces.IDialogResponse
 - Interfaces.IDialogService
 - Interfaces.IMessageService
+- ViewModels.IViewModel  
+    It has a ViewService property.
 - ViewModels.ViewModelBase  
     Constructor with ViewService as an argument.
 - ViewModels.ViewService  
@@ -31,7 +33,9 @@ It helps in binding the properties of a class to the DataBinding of a control.
   - Extensions.PropertyBindExtensions
   - Extensions.RadioButtonExtensions
 
-Extensions.PropertyBindExtensions allows you to create Extensions that are not provided.
+    ```
+    Extensions.PropertyBindExtensions allows you to create Extensions that are not provided.
+    ```
 
 - Views.ActiveFormTracker  
     It always keeps track of the active form object, regardless of the debugging environment.  
@@ -54,7 +58,7 @@ Provides an object whose value can be tracked for changes.
   - StatefulTrackingObservableRecipient
   - StatefulTrackingObservableValidator
 
-Constructor with ViewService as an argument.
+This is a ViewModel that implements Metroit.Mvvm.ViewModels.IViewModel.
   - TrackingObservableObjectViewModelBase
   - TrackingObservableRecipientViewModelBase
   - TrackingObservableValidatorViewModelBase

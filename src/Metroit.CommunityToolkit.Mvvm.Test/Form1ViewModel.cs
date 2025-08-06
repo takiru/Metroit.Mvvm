@@ -5,7 +5,7 @@ using Metroit.Mvvm.ViewModels;
 
 namespace Metroit.CommunityToolkit.Mvvm.Test
 {
-    public partial class Form1ViewModel : TrackingObservableObjectViewModelBase
+    public partial class Form1ViewModel : TrackingObservableObjectViewModelBase<Form1ViewModel>
     {
         public Form1ViewModel()
         {

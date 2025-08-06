@@ -8,7 +8,7 @@
 		<Authors>Takeru Yamaguchi</Authors>
 		<Description>It provides a native MVVM implementation included with Metroit.Windows.Forms.</Description>
 		<Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-		<VersionPrefix>0.0.2</VersionPrefix>
+		<VersionPrefix>0.0.3</VersionPrefix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<FileVersion>$(VersionPrefix)</FileVersion>
 		<PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
@@ -18,8 +18,10 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageReleaseNotes>
-			small released.
-		</PackageReleaseNotes>
+      Reviewed:
+      Changed the ViewModel recognized in the constructor and internally to Metroit.Mvvm.ViewModels.IViewModel.
+      - MetViewBase
+    </PackageReleaseNotes>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 

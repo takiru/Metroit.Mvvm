@@ -7,7 +7,7 @@ namespace Metroit.CommunityToolkit.Mvvm
     /// ViewModel の基底となる操作を提供します。
     /// </summary>
     /// <typeparam name="T">状態管理と変更追跡を行うクラス。</typeparam>
-    public abstract class StatefulTrackingObservableObjectViewModelBase<T> : StatefulTrackingObservableObject<T> where T : class
+    public abstract class StatefulTrackingObservableObjectViewModelBase<T> : StatefulTrackingObservableObject<T>, IViewModel where T : class
     {
         /// <summary>
         /// View制御サービスを提供します。

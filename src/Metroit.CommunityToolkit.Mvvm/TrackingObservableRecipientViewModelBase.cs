@@ -7,7 +7,7 @@ namespace Metroit.CommunityToolkit.Mvvm
     /// ViewModel の基底となる操作を提供します。
     /// </summary>
     /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
-    public abstract class TrackingObservableRecipientViewModelBase<T> : TrackingObservableRecipient<T> where T : class
+    public abstract class TrackingObservableRecipientViewModelBase<T> : TrackingObservableRecipient<T>, IViewModel where T : class
     {
         /// <summary>
         /// View制御サービスを提供します。

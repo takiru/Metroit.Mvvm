@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Metroit.Windows.Forms.Mvvm.Extensions\Metroit.Windows.Forms.Mvvm.Extensions.csproj" />
+		<ProjectReference Include="..\Metroit.Windows.Forms.Mvvm\Metroit.Windows.Forms.Mvvm.csproj" />
 	</ItemGroup>
 
 	<Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">

@@ -7,7 +7,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides convenient functions using CommunityToolkit.Mvvm.</Description>
     <Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>0.0.2</VersionPrefix>
+    <VersionPrefix>0.0.3</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
@@ -17,20 +17,13 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageReleaseNotes>
-      Reviewed
-      - TrackingObservableObject
+      Reviewed:
+      Implemented Metroit.Mvvm.ViewModels.IViewModel.
       - TrackingObservableObjectViewModelBase
-      - TrackingObservableRecipient
       - TrackingObservableRecipientViewModelBase
-      - TrackingObservableValidator
       - TrackingObservableValidatorViewModelBase
-
-      Added
-      - StatefulTrackingObservableObject
       - StatefulTrackingObservableObjectViewModelBase
-      - StatefulTrackingObservableRecipient
       - StatefulTrackingObservableRecipientViewModelBase
-      - StatefulTrackingObservableValidator
       - StatefulTrackingObservableValidatorViewModelBase
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>

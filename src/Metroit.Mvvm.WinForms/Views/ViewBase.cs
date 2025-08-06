@@ -12,14 +12,14 @@ namespace Metroit.Mvvm.WinForms.Views
         /// <summary>
         /// 認識済みのViewModel。
         /// </summary>
-        private ViewModelBase _viewModel;
+        private IViewModel _viewModel;
 
         /// <summary>
         /// 新たな ViewModel を生成します。
         /// </summary>
         /// <typeparam name="T">ViewModel の具体的な型。</typeparam>
         /// <returns>ViewModel。</returns>
-        protected T NewViewModel<T>(params object[] args) where T : ViewModelBase
+        protected T NewViewModel<T>(params object[] args) where T : IViewModel
         {
             _viewModel = (T)Activator.CreateInstance(typeof(T), args);
             return (T)_viewModel;
@@ -30,7 +30,7 @@ namespace Metroit.Mvvm.WinForms.Views
         /// </summary>
         /// <typeparam name="T">ViewModel の具体的な型。</typeparam>
         /// <returns>ViewModel。</returns>
-        protected T GetViewModel<T>() where T : ViewModelBase
+        protected T GetViewModel<T>() where T : IViewModel
         {
             return (T)_viewModel;
         }
@@ -44,7 +44,7 @@ namespace Metroit.Mvvm.WinForms.Views
         /// 新しいインスタンスを生成します。
         /// </summary>
         /// <param name="viewModel">ViewModel。</param>
-        public ViewBase(ViewModelBase viewModel) : base()
+        public ViewBase(IViewModel viewModel) : base()
         {
             _viewModel = viewModel;
         }
