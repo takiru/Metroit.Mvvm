@@ -4,6 +4,7 @@
 		<TargetFrameworks>net6.0-windows;net8.0-windows;net462</TargetFrameworks>
 		<Nullable>disable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Authors>Takeru Yamaguchi</Authors>
 		<Description>It provides a native MVVM implementation included with Metroit.Windows.Forms.</Description>
@@ -25,16 +26,8 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<Target Name="RemoveUnnecessaryWebView2References" AfterTargets="ResolvePackageDependenciesForBuild">
-		<ItemGroup>
-			<ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.WinForms' And '$(UseWindowsForms)' != 'true'" />
-			<ReferenceToBeRemoved Include="@(Reference)" Condition="'%(Reference.FileName)' == 'Microsoft.Web.WebView2.Wpf' And '$(UseWpf)' != 'true'" />
-			<Reference Remove="@(ReferenceToBeRemoved)" />
-		</ItemGroup>
-	</Target>
-
 	<ItemGroup>
-	  <PackageReference Include="Metroit.Windows.Forms" Version="3.1.5" />
+	  <PackageReference Include="Metroit.Windows.Forms" Version="3.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>

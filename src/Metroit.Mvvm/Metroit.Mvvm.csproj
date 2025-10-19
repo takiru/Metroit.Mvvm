@@ -26,4 +26,8 @@
     </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Metroit" Version="3.5.0" />
+  </ItemGroup>
 </Project>

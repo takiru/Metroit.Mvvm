@@ -1,22 +1,31 @@
-﻿using Metroit.Mvvm.ViewModels;
+﻿using Metroit.Contracts;
+using Metroit.Mvvm.ViewModels;
+using Metroit.Mvvm.Views;
 using Metroit.Mvvm.WinForms.Views;
 using Test;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
-    public partial class Form2 : ViewBase
+    public partial class Form2 : Form, IViewModelProvider<Form1ViewModel>, IDialogRequest<TestDialogRequest>, IDialogResponse<TestDialogResponse>
     {
-        private Form1ViewModel ViewModel;
+        public Form1ViewModel ViewModel { get; set; }
+        public TestDialogRequest Request { get; set; }
 
-        public object Request { get; set; }
+        private TestDialogResponse _response = new TestDialogResponse();
 
-        public object Response { get; set; }
+        TestDialogResponse IDialogResponse<TestDialogResponse>.Response { get => _response; set => _response = value; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TestDialogResponse Response { get => _response; private set => _response = value; }
+
 
         public Form2()
         {
             InitializeComponent();
             var viewService = new ViewService(new DialogService(), new MessageService() { OwnerFormProvider = () => ActiveFormTracker.ActiveForm });
-            ViewModel = NewViewModel<Form1ViewModel>(viewService);
+            ViewModel = new Form1ViewModel(viewService);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,7 +41,7 @@ namespace Metroit.Mvvm.WinForms.Test
                 return;
             }
 
-            MessageBox.Show($"リクエスト値＝{((TestDialogRequest)Request).RequestValue}");
+            MessageBox.Show($"リクエスト値＝{Request.RequestValue}");
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
