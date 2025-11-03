@@ -43,7 +43,7 @@ namespace Test
 
         public void DialogTestShow()
         {
-            ViewService.Dialog.Show("Form2");
+            ViewService.Dialog.Show<Form2>();
         }
 
         public void DialogTestShowWithParam()
@@ -52,12 +52,12 @@ namespace Test
             {
                 RequestValue = "Form2へのリクエスト値です。"
             };
-            ViewService.Dialog.Show("Form2", req);
+            ViewService.Dialog.Show<Form2, TestDialogRequest>(req);
         }
 
         public void DialogTestShowDialog()
         {
-            var r = ViewService.Dialog.ShowDialog<TestDialogResponse>("Form2");
+            var r = ViewService.Dialog.ShowDialog<Form2, TestDialogResponse>();
             ViewService.Message.Information(r.ResponseValue);
         }
 
@@ -67,7 +67,7 @@ namespace Test
             {
                 RequestValue = "Form2へのリクエスト値です。"
             };
-            var r = ViewService.Dialog.ShowDialog<TestDialogRequest, TestDialogResponse>(FormName.Form2.ToString(), req);
+            var r = ViewService.Dialog.ShowDialog<Form2, TestDialogRequest, TestDialogResponse>(req);
             ViewService.Message.Information(r.ResponseValue);
         }
     }

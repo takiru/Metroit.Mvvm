@@ -13,7 +13,105 @@ namespace Metroit.Mvvm.WinForms.Test
         public string ResponseValue { get; set; }
     }
 
-    public class DialogService : IDialogService
+
+    /// <summary>
+    /// ダイアログのレジストリ。
+    /// </summary>
+    public interface IDialogRegistry
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dialogKey"></param>
+        void Register<T>(string dialogKey) where T : new();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dialogKey"></param>
+        /// <returns></returns>
+        Type GetDialogType(string dialogKey);
+    }
+
+    /// <summary>
+    /// ダイアログのレジストリ。
+    /// </summary>
+    public interface IDialogRegistry<TDialog> where TDialog : Form
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TDialog"></typeparam>
+        /// <param name="dialogKey"></param>
+        void Register<TDialog>(string dialogKey) where TDialog : Form, new();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dialogKey"></param>
+        /// <returns></returns>
+        Type GetDialogType(string dialogKey);
+    }
+
+
+
+    public interface IWinFormsDialogService
+    {
+        /// <summary>
+        /// リクエストなし、レスポンスなしモーダルダイアログ。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        void Show<T>() where T : Form, new();
+
+        /// <summary>
+        /// リクエストあり、レスポンスなしモーダルダイアログ。
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        void Show<T1, T2>(T2 request) where T1 : Form, IDialogRequest<T2>, new();
+
+        /// <summary>
+        /// リクエストなし、レスポンスなしモーダルダイアログ。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        void ShowDialog<T>() where T : Form, new();
+
+        /// <summary>
+        /// リクエストあり、レスポンスなしモーダルダイアログ。
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        void ShowDialog<T1, T2>(T2 request) where T1 : Form, IDialogRequest<T2>, new();
+
+        /// <summary>
+        /// リクエストなし、レスポンスありモーダルダイアログ。
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <returns></returns>
+        T2 ShowDialog<T1, T2>() where T1 : Form, IDialogResponse<T2>, new();
+
+        /// <summary>
+        /// リクエストあり、レスポンスありモーダルダイアログ。
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        T3 ShowDialog<T1, T2, T3>(T2 request) where T1 : Form, IDialogRequest<T2>, IDialogResponse<T3>, new();
+    }
+
+
+
+    public class DialogService : IDialogService, IWinFormsDialogService
     {
         public DialogService()
         {
@@ -22,11 +120,22 @@ namespace Metroit.Mvvm.WinForms.Test
 
         //// この方法が一番いいかな
 
+        // IDialogService の明示的実装
+        void IDialogService.Show<T>()
+        {
+            // Form制約がないため、WinForms専用メソッドに委譲できない
+            // 必要に応じて実装するか、NotSupportedExceptionをスローする
+            //throw new NotSupportedException("Use IWinFormsDialogService for WinForms dialogs.");
+            Show<T>();
+        }
+
+
         /// <summary>
         /// リクエストなし、レスポンスなしモーダルダイアログ。
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
+        // IWinFormsDialogService の実装
         public void Show<T>() where T : Form, new()
         {
             var form = new T();
