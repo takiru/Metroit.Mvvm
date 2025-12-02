@@ -4,17 +4,36 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Metroit.Mvvm.WinForms.Views
+namespace Metroit.Mvvm.WinForms.ViewModels
 {
     /// <summary>
     /// メッセージのサービスを提供します。
     /// </summary>
-    public class MessageService : IMessageService<DialogResultType>
+    public class WinFormsMessageService : IMessageService<DialogResultType>
     {
+        private Func<Form> _ownerFormProvider;
+
         /// <summary>
         /// メッセージを表示するオーナーを取得します。
         /// </summary>
-        public Func<object> OwnerFormProvider { get; set; }
+        public object Owner => _ownerFormProvider?.Invoke();
+
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
+        public WinFormsMessageService()
+        {
+
+        }
+
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
+        /// <param name="ownerFormProvider">オーナーフォームを取得するためのプロバイダー。</param>
+        public WinFormsMessageService(Func<Form> ownerFormProvider)
+        {
+            _ownerFormProvider = ownerFormProvider;
+        }
 
         /// <summary>
         /// 確認メッセージを表示します。
@@ -212,12 +231,12 @@ namespace Metroit.Mvvm.WinForms.Views
         }
 
         /// <summary>
-        /// オーナーのタイトルを取得する。
+        /// オーナーのタイトルを取得します。
         /// </summary>
         /// <returns></returns>
-        private string GetOwnerTitle()
+        protected virtual string GetOwnerTitle()
         {
-            var owner = (Form)OwnerFormProvider?.Invoke();
+            var owner = Owner as Form;
             return owner?.Text ?? FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;
         }
         /// <summary>

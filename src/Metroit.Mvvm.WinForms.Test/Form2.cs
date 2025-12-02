@@ -1,12 +1,12 @@
 ﻿using Metroit.Contracts;
 using Metroit.Mvvm.ViewModels;
 using Metroit.Mvvm.Views;
-using Metroit.Mvvm.WinForms.Views;
-using Test;
+using Metroit.Mvvm.WinForms.ViewModels;
+using System.Diagnostics;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
-    public partial class Form2 : Form, IViewModelProvider<Form1ViewModel>, IDialogRequest<TestDialogRequest>, IDialogResponse<TestDialogResponse>
+    public partial class Form2 : Form, IViewModelProvider<Form1ViewModel>, IDialogRequest<TestDialogRequest>, IDialogResponse<TestDialogResponse>, IDialogActivateAction
     {
         public Form1ViewModel ViewModel { get; set; }
         public TestDialogRequest Request { get; set; }
@@ -24,7 +24,7 @@ namespace Metroit.Mvvm.WinForms.Test
         public Form2()
         {
             InitializeComponent();
-            var viewService = new ViewService(new DialogService(), new MessageService() { OwnerFormProvider = () => ActiveFormTracker.ActiveForm });
+            var viewService = new WinFormsViewService(new WinFormsDialogService(), new WinFormsMessageService(() => this));
             ViewModel = new Form1ViewModel(viewService);
         }
 
@@ -53,6 +53,14 @@ namespace Metroit.Mvvm.WinForms.Test
             Response = r;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ViewModel.Show();
+        }
 
+        public void ExecuteActivateAction(object param)
+        {
+            Debug.WriteLine("アクティブになったときの制御。Activatedイベントの後に発生する。");
+        }
     }
 }

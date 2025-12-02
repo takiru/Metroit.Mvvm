@@ -1,13 +1,12 @@
-﻿using Metroit.Mvvm;
-using Metroit.Mvvm.ViewModels;
-using Metroit.Mvvm.WinForms.Test;
+﻿using Metroit.Mvvm.ViewModels;
+using Metroit.Mvvm.WinForms.ViewModels;
 using System.Diagnostics;
 
-namespace Test
+namespace Metroit.Mvvm.WinForms.Test
 {
-    public class Form1ViewModel : ViewModelBase
+    public class Form1ViewModel : WinFormsViewModelBase
     {
-        public Form1ViewModel(ViewService viewService) : base(viewService)
+        public Form1ViewModel(WinFormsViewService viewService) : base(viewService)
         {
 
         }
@@ -31,7 +30,7 @@ namespace Test
 
             result = ViewService.Message.ConfirmYesNoCancel("YesNoCancel確認");
             Debug.WriteLine($"{result}");
-            result = ViewService.Message.ConfirmYesNoCancel("YesNoCancel確認", "YesHoCancelタイトル");
+            result = ViewService.Message.ConfirmYesNoCancel("YesNoCancel確認", "YesNoCancelタイトル");
             Debug.WriteLine($"{result}");
 
             ViewService.Message.Warning("警告");
@@ -41,27 +40,49 @@ namespace Test
             ViewService.Message.Error("エラー", "エラータイトル");
         }
 
-        public void DialogTestShow()
+        public Func<Form> OwnerProvider;
+
+        public void Show()
         {
+            if (ViewService.Dialog.IsOpened<Form2>())
+            {
+                ViewService.Dialog.ActivateWithAction<Form2>();
+                return;
+            }
+
             ViewService.Dialog.Show<Form2>();
         }
 
-        public void DialogTestShowWithParam()
+        public void ShowWithRequest()
         {
             var req = new TestDialogRequest()
             {
                 RequestValue = "Form2へのリクエスト値です。"
             };
-            ViewService.Dialog.Show<Form2, TestDialogRequest>(req);
+            ViewService.Dialog.Show<Form2, TestDialogRequest>(req, OwnerProvider);
         }
 
-        public void DialogTestShowDialog()
+        public void ShowDialog()
+        {
+            ViewService.Dialog.ShowDialog<Form2>();
+        }
+
+        public void ShowDialogWithRequest()
+        {
+            var req = new TestDialogRequest()
+            {
+                RequestValue = "Form2へのリクエスト値です。"
+            };
+            ViewService.Dialog.ShowDialog<Form2, TestDialogRequest>(req);
+        }
+
+        public void ShowDialogWithResponse()
         {
             var r = ViewService.Dialog.ShowDialog<Form2, TestDialogResponse>();
             ViewService.Message.Information(r.ResponseValue);
         }
 
-        public void DialogTestShowDialogWithParam()
+        public void ShowDialogWithRequestAndResponse()
         {
             var req = new TestDialogRequest()
             {

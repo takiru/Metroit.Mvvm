@@ -1,53 +1,55 @@
 ﻿using Metroit.Mvvm.ViewModels;
 using Metroit.Mvvm.Views;
-using Metroit.Mvvm.WinForms;
-using Metroit.Mvvm.WinForms.Test;
-using Metroit.Mvvm.WinForms.Views;
-using Metroit.Windows.Forms.Mvvm;
+using Metroit.Mvvm.WinForms.ViewModels;
 
-namespace Test
+namespace Metroit.Mvvm.WinForms.Test
 {
     public partial class Form1 : Form, IViewModelProvider<Form1ViewModel>
     {
-        public Form1ViewModel ViewModel { get; set; }
+        public Form1ViewModel ViewModel { get; }
 
         public Form1()
         {
             InitializeComponent();
 
-            // TODO: DI で MessageService をインスタンス化してシングルトンで登録する
-            var viewService = new ViewService(new DialogService(), new MessageService() { OwnerFormProvider = () => ActiveFormTracker.ActiveForm });
+            var viewService = new WinFormsViewService(new WinFormsDialogService(), new WinFormsMessageService(() => this));
             ViewModel = new Form1ViewModel(viewService);
+            ViewModel.OwnerProvider = () => this;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void MessageButton_Click(object sender, EventArgs e)
         {
             ViewModel.MessageTest();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void DialogShowButton_Click(object sender, EventArgs e)
         {
-            ViewModel.DialogTestShow();
+            ViewModel.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void DialogShowWithRequestButton_Click(object sender, EventArgs e)
         {
-            ViewModel.DialogTestShowWithParam();
+            ViewModel.ShowWithRequest();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void DialogShowDialogButton_Click(object sender, EventArgs e)
         {
-            ViewModel.DialogTestShowDialog();
+            ViewModel.ShowDialog();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void DialogShowDialogWithRequestButton_Click(object sender, EventArgs e)
         {
-            ViewModel.DialogTestShowDialogWithParam();
+            ViewModel.ShowDialogWithRequest();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void DialogShowDialogWithResponseButton_Click(object sender, EventArgs e)
         {
-            var a = new Form3();
+            ViewModel.ShowDialogWithResponse();
+        }
+
+        private void DialogShowDialogWithRequestAndResponseButton_Click(object sender, EventArgs e)
+        {
+            ViewModel.ShowDialogWithRequestAndResponse();
         }
     }
 }

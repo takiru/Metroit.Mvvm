@@ -11,7 +11,7 @@ namespace Metroit.Mvvm.Interfaces
         /// <summary>
         /// メッセージを表示するオーナーを取得します。
         /// </summary>
-        Func<object> OwnerFormProvider { get; set; }
+        object Owner { get; }
 
         /// <summary>
         /// 情報メッセージを表示します。

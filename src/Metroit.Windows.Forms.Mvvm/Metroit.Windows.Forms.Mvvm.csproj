@@ -27,7 +27,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Metroit.Windows.Forms" Version="3.5.0" />
+	  <PackageReference Include="Metroit.Windows.Forms" Version="4.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

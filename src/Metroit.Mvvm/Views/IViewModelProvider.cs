@@ -9,6 +9,6 @@
         /// <summary>
         /// ビューモデルの取得または設定を行います。
         /// </summary>
-        T ViewModel { get; set; }
+        T ViewModel { get; }
     }
 }

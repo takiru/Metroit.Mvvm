@@ -1,4 +1,4 @@
-﻿namespace Test
+﻿namespace Metroit.Mvvm.WinForms.Test
 {
     partial class Form1
     {
@@ -28,85 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            MessageButton = new Button();
+            DialogShowButton = new Button();
+            DialogShowWithRequestButton = new Button();
+            DialogShowDialogWithResponseButton = new Button();
+            DialogShowDialogWithRequestAndResponseButton = new Button();
+            DialogShowDialogButton = new Button();
+            DialogShowDialogWithRequestButton = new Button();
             SuspendLayout();
             // 
-            // button1
+            // MessageButton
             // 
-            button1.Location = new Point(106, 97);
-            button1.Name = "button1";
-            button1.Size = new Size(90, 23);
-            button1.TabIndex = 0;
-            button1.Text = "MessageTest";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            MessageButton.Location = new Point(12, 12);
+            MessageButton.Name = "MessageButton";
+            MessageButton.Size = new Size(90, 23);
+            MessageButton.TabIndex = 0;
+            MessageButton.Text = "MessageTest";
+            MessageButton.UseVisualStyleBackColor = true;
+            MessageButton.Click += MessageButton_Click;
             // 
-            // button2
+            // DialogShowButton
             // 
-            button2.Location = new Point(209, 30);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 2;
-            button2.Text = "DialogTest";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            DialogShowButton.Location = new Point(283, 12);
+            DialogShowButton.Name = "DialogShowButton";
+            DialogShowButton.Size = new Size(102, 23);
+            DialogShowButton.TabIndex = 2;
+            DialogShowButton.Text = "Dialog Show";
+            DialogShowButton.UseVisualStyleBackColor = true;
+            DialogShowButton.Click += DialogShowButton_Click;
             // 
-            // button3
+            // DialogShowWithRequestButton
             // 
-            button3.Location = new Point(209, 69);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 3;
-            button3.Text = "DialogTest";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            DialogShowWithRequestButton.Location = new Point(233, 41);
+            DialogShowWithRequestButton.Name = "DialogShowWithRequestButton";
+            DialogShowWithRequestButton.Size = new Size(152, 23);
+            DialogShowWithRequestButton.TabIndex = 3;
+            DialogShowWithRequestButton.Text = "Dialog ShowWithRequest";
+            DialogShowWithRequestButton.UseVisualStyleBackColor = true;
+            DialogShowWithRequestButton.Click += DialogShowWithRequestButton_Click;
             // 
-            // button4
+            // DialogShowDialogWithResponseButton
             // 
-            button4.Location = new Point(209, 107);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 4;
-            button4.Text = "DialogTest";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            DialogShowDialogWithResponseButton.Location = new Point(185, 128);
+            DialogShowDialogWithResponseButton.Name = "DialogShowDialogWithResponseButton";
+            DialogShowDialogWithResponseButton.Size = new Size(200, 23);
+            DialogShowDialogWithResponseButton.TabIndex = 4;
+            DialogShowDialogWithResponseButton.Text = "Dialog ShowDialogWithResponse";
+            DialogShowDialogWithResponseButton.UseVisualStyleBackColor = true;
+            DialogShowDialogWithResponseButton.Click += DialogShowDialogWithResponseButton_Click;
             // 
-            // button5
+            // DialogShowDialogWithRequestAndResponseButton
             // 
-            button5.Location = new Point(209, 136);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 5;
-            button5.Text = "DialogTest";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            DialogShowDialogWithRequestAndResponseButton.Location = new Point(112, 157);
+            DialogShowDialogWithRequestAndResponseButton.Name = "DialogShowDialogWithRequestAndResponseButton";
+            DialogShowDialogWithRequestAndResponseButton.Size = new Size(273, 23);
+            DialogShowDialogWithRequestAndResponseButton.TabIndex = 5;
+            DialogShowDialogWithRequestAndResponseButton.Text = "Dialog ShowDialogWithRequestAndResponse";
+            DialogShowDialogWithRequestAndResponseButton.UseVisualStyleBackColor = true;
+            DialogShowDialogWithRequestAndResponseButton.Click += DialogShowDialogWithRequestAndResponseButton_Click;
             // 
-            // button6
+            // DialogShowDialogButton
             // 
-            button6.Location = new Point(106, 199);
-            button6.Name = "button6";
-            button6.Size = new Size(75, 23);
-            button6.TabIndex = 6;
-            button6.Text = "DialogTest";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
+            DialogShowDialogButton.Location = new Point(258, 70);
+            DialogShowDialogButton.Name = "DialogShowDialogButton";
+            DialogShowDialogButton.Size = new Size(127, 23);
+            DialogShowDialogButton.TabIndex = 7;
+            DialogShowDialogButton.Text = "Dialog ShowDialog";
+            DialogShowDialogButton.UseVisualStyleBackColor = true;
+            DialogShowDialogButton.Click += DialogShowDialogButton_Click;
+            // 
+            // DialogShowDialogWithRequestButton
+            // 
+            DialogShowDialogWithRequestButton.Location = new Point(185, 99);
+            DialogShowDialogWithRequestButton.Name = "DialogShowDialogWithRequestButton";
+            DialogShowDialogWithRequestButton.Size = new Size(200, 23);
+            DialogShowDialogWithRequestButton.TabIndex = 8;
+            DialogShowDialogWithRequestButton.Text = "Dialog ShowDialogWithRequest";
+            DialogShowDialogWithRequestButton.UseVisualStyleBackColor = true;
+            DialogShowDialogWithRequestButton.Click += DialogShowDialogWithRequestButton_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(397, 247);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(DialogShowDialogWithRequestButton);
+            Controls.Add(DialogShowDialogButton);
+            Controls.Add(DialogShowDialogWithRequestAndResponseButton);
+            Controls.Add(DialogShowDialogWithResponseButton);
+            Controls.Add(DialogShowWithRequestButton);
+            Controls.Add(DialogShowButton);
+            Controls.Add(MessageButton);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
@@ -115,11 +127,12 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Button MessageButton;
+        private Button DialogShowButton;
+        private Button DialogShowWithRequestButton;
+        private Button DialogShowDialogWithResponseButton;
+        private Button DialogShowDialogWithRequestAndResponseButton;
+        private Button DialogShowDialogButton;
+        private Button DialogShowDialogWithRequestButton;
     }
 }
