@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Metroit.CommunityToolkit.Mvvm\Metroit.CommunityToolkit.Mvvm.csproj" />
     <ProjectReference Include="..\Metroit.Mvvm.WinForms\Metroit.Mvvm.WinForms.csproj" />
     <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
     <ProjectReference Include="..\Metroit.Windows.Forms.Mvvm\Metroit.Windows.Forms.Mvvm.csproj" />

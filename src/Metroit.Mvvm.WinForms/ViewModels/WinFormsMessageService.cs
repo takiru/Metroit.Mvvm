@@ -1,4 +1,4 @@
-﻿using Metroit.Mvvm.Interfaces;
+﻿using Metroit.Mvvm.Interfaces.Generic;
 using System;
 using System.Diagnostics;
 using System.Reflection;

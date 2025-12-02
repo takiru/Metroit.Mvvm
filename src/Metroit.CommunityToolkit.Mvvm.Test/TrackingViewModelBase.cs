@@ -1,25 +1,23 @@
-﻿namespace Metroit.Mvvm.WinForms.ViewModels
+﻿using Metroit.Annotations;
+
+namespace Metroit.CommunityToolkit.Mvvm.Test
 {
     /// <summary>
     /// ViewModel の基底となる操作を提供します。
     /// </summary>
-    public abstract class WinFormsViewModelBase : IWinFormsViewModel
+    /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
+    public abstract class TrackingViewModelBase<T> : TrackingObservableObject<T> where T : class
     {
         /// <summary>
         /// View制御サービスを提供します。
         /// </summary>
+        [NoTracking]
         public WinFormsViewService ViewService { get; }
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public WinFormsViewModelBase() { }
-
-        /// <summary>
-        /// 新しいインスタンスを生成します。
-        /// </summary>
-        /// <param name="viewService">View制御サービス。</param>
-        public WinFormsViewModelBase(WinFormsViewService viewService)
+        public TrackingViewModelBase(WinFormsViewService viewService) : base()
         {
             ViewService = viewService;
         }

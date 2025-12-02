@@ -1,6 +1,4 @@
-﻿using Metroit.Mvvm.ViewModels;
-using Metroit.Mvvm.WinForms.ViewModels;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
@@ -55,6 +53,12 @@ namespace Metroit.Mvvm.WinForms.Test
 
         public void ShowWithRequest()
         {
+            if (ViewService.Dialog.IsOpened<Form2>())
+            {
+                ViewService.Dialog.Activate<Form2>();
+                return;
+            }
+
             var req = new TestDialogRequest()
             {
                 RequestValue = "Form2へのリクエスト値です。"

@@ -1,5 +1,4 @@
 ﻿using Metroit.Contracts;
-using Metroit.Mvvm.Interfaces;
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -10,7 +9,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
     /// <summary>
     /// WinForms 用ダイアログサービスを提供します。
     /// </summary>
-    public class WinFormsDialogService : IDialogService, IWinFormsDialogService
+    public class WinFormsDialogService : IWinFormsDialogService
     {
         /// <summary>
         /// 指定したウィンドウの表示状態を設定します。
@@ -32,159 +31,6 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         public WinFormsDialogService()
         {
 
-        }
-
-        /// <summary>
-        /// 指定したダイアログが開かれているかどうかを取得します。
-        /// </summary>
-        /// <typeparam name="T">扱っているオブジェクト。</typeparam>
-        /// <returns>開かれている場合は true, それ以外は false を返却します。</returns>
-        bool IDialogService.IsOpened<T>()
-        {
-            EnsureFormType<T>();
-            return IsOpenedInternal(typeof(T));
-        }
-
-        /// <summary>
-        /// モーダレスダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T">扱っているオブジェクト。</typeparam>
-        /// <exception cref="NotSupportedException"><typeparamref name="T"/>が<see cref="Form"/>ではありません。</exception>
-        void IDialogService.Show<T>()
-        {
-            EnsureFormType<T>();
-            ShowInternal(typeof(T), null);
-        }
-
-        /// <summary>
-        /// モーダレスダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T">フォーム。</typeparam>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
-        void IDialogService.Show<T>(Func<object> ownerProvider)
-        {
-            EnsureFormType<T>();
-            ShowInternal(typeof(T), (Func<Form>)ownerProvider);
-        }
-
-        /// <summary>
-        /// リクエストを持つモーダレスダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T1">扱っているオブジェクト。</typeparam>
-        /// <typeparam name="T2">リクエスト。</typeparam>
-        /// <param name="request">リクエスト。</param>
-        /// <exception cref="NotSupportedException"><typeparamref name="T1"/>が<see cref="Form"/>ではありません。</exception>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T1"/>が<see cref="IDialogRequest{T}"/>を実装していません。</exception>
-        void IDialogService.Show<T1, T2>(T2 request)
-        {
-            EnsureFormType<T1>();
-            ShowWithRequestInternal(typeof(T1), request, null);
-        }
-
-        /// <summary>
-        /// リクエストを持つモーダレスダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T1">扱っているオブジェクト。</typeparam>
-        /// <typeparam name="T2">リクエスト。</typeparam>
-        /// <param name="request">リクエスト。</param>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
-        /// <exception cref="NotSupportedException"><typeparamref name="T1"/>が<see cref="Form"/>ではありません。</exception>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T1"/>が<see cref="IDialogRequest{T}"/>を実装していません。</exception>
-        void IDialogService.Show<T1, T2>(T2 request, Func<object> ownerProvider)
-        {
-            EnsureFormType<T1>();
-            ShowWithRequestInternal(typeof(T1), request, (Func<Form>)ownerProvider);
-        }
-
-        /// <summary>
-        /// モーダレスダイアログをアクティブ化します。
-        /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
-        /// </summary>
-        /// <typeparam name="T">扱っているオブジェクト。</typeparam>
-        void IDialogService.Activate<T>()
-        {
-            EnsureFormType<T>();
-            ActivateInternal(typeof(T));
-        }
-
-        /// <summary>
-        /// モーダレスダイアログをアクティブ化して制御を実施します。
-        /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
-        /// </summary>
-        /// <typeparam name="T">扱っているオブジェクト。</typeparam>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T"/>が<see cref="IDialogActivateAction"/>を実装していません。</exception>
-        void IDialogService.ActivateWithAction<T>()
-        {
-            EnsureFormType<T>();
-            ActivateWithActionInternal(typeof(T), null);
-        }
-
-        /// <summary>
-        /// モーダレスダイアログをアクティブ化して制御を実施します。
-        /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
-        /// </summary>
-        /// <param name="param">パラメーター。</param>
-        /// <typeparam name="T">扱っているオブジェクト。</typeparam>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T"/>が<see cref="IDialogActivateAction"/>を実装していません。</exception>
-        void IDialogService.ActivateWithAction<T>(object param)
-        {
-            EnsureFormType<T>();
-            ActivateWithActionInternal(typeof(T), param);
-        }
-
-        /// <summary>
-        /// モーダルダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T">扱っているオブジェクト。</typeparam>
-        /// <exception cref="NotSupportedException"><typeparamref name="T"/>が<see cref="Form"/>ではありません。</exception>
-        void IDialogService.ShowDialog<T>()
-        {
-            EnsureFormType<T>();
-            ShowDialogInternal(typeof(T));
-        }
-
-        /// <summary>
-        /// リクエストを持つモーダルダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T1">扱っているオブジェクト。</typeparam>
-        /// <typeparam name="T2">リクエスト。</typeparam>
-        /// <param name="request">リクエスト。</param>
-        /// <exception cref="NotSupportedException"><typeparamref name="T1"/>が<see cref="Form"/>ではありません。</exception>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T1"/>が<see cref="IDialogRequest{T}"/>を実装していません。</exception>
-        void IDialogService.ShowDialog<T1, T2>(T2 request)
-        {
-            EnsureFormType<T1>();
-            ShowDialogWithRequestInternal(typeof(T1), request);
-        }
-
-        /// <summary>
-        /// レスポンスを持つモーダルダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T1">扱っているオブジェクト。</typeparam>
-        /// <typeparam name="T2">レスポンス。</typeparam>
-        /// <returns>レスポンス。</returns>
-        /// <exception cref="NotSupportedException"><typeparamref name="T1"/>が<see cref="Form"/>ではありません。</exception>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T1"/>が<see cref="IDialogResponse{T}"/>を実装していません。</exception>
-        T2 IDialogService.ShowDialog<T1, T2>()
-        {
-            EnsureFormType<T1>();
-            return ShowDialogWithResponseInternal<T2>(typeof(T1));
-        }
-
-        /// <summary>
-        /// リクエストとレスポンスを持つモーダルダイアログを表示します。
-        /// </summary>
-        /// <typeparam name="T1">扱っているオブジェクト。</typeparam>
-        /// <typeparam name="T2">リクエスト。</typeparam>
-        /// <typeparam name="T3">レスポンス。</typeparam>
-        /// <param name="request">リクエスト。</param>
-        /// <returns>レスポンス。</returns>
-        /// <exception cref="NotSupportedException"><typeparamref name="T1"/>が<see cref="Form"/>ではありません。</exception>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T1"/>が<see cref="IDialogRequest{T}"/>と<see cref="IDialogResponse{T}"/>を実装していません。</exception>
-        T3 IDialogService.ShowDialog<T1, T2, T3>(T2 request)
-        {
-            EnsureFormType<T1>();
-            return ShowDialogWithRequestAndResponseInternal<T2, T3>(typeof(T1), request);
         }
 
         /// <summary>

@@ -1,13 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Metroit.Annotations;
-using Metroit.Mvvm.ViewModels;
 
 namespace Metroit.CommunityToolkit.Mvvm.Test
 {
-    public partial class Form1ViewModel : TrackingObservableObjectViewModelBase<Form1ViewModel>
+    public partial class Form1ViewModel : TrackingViewModelBase<Form1ViewModel>
     {
-        public Form1ViewModel()
+        public Form1ViewModel(WinFormsViewService viewService) : base(viewService)
         {
             ChangeTracker.NoTrackings = new string[] {
                 nameof(IsChanged)

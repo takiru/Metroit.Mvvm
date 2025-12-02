@@ -1,4 +1,5 @@
 ﻿using Metroit.Mvvm.Interfaces;
+using Metroit.Mvvm.Interfaces.Generic;
 
 namespace Metroit.Mvvm.ViewModels
 {

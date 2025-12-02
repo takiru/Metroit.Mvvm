@@ -25,6 +25,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\IWinFormsViewModel.cs" />
+    <Compile Remove="ViewModels\WinFormsViewModelBase.cs" />
+    <Compile Remove="ViewModels\WinFormsViewService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />
   </ItemGroup>
 

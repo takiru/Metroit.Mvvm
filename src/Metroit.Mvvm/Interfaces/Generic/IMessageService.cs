@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Metroit.Mvvm.Interfaces
+﻿namespace Metroit.Mvvm.Interfaces.Generic
 {
     /// <summary>
     /// メッセージのサービスを提供します。
