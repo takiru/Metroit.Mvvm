@@ -1,8 +1,12 @@
-﻿using System.Diagnostics;
+﻿using Metroit.ChangeTracking;
+using Metroit.Mvvm.WinForms.ViewModels;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
-    public class Form1ViewModel : WinFormsViewModelBase
+    //public class Form1ViewModel : WinFormsViewModelBase
+    public class Form1ViewModel : TrackingViewModelBase<Form1ViewModel>
     {
         public Form1ViewModel(WinFormsViewService viewService) : base(viewService)
         {
@@ -64,6 +68,11 @@ namespace Metroit.Mvvm.WinForms.Test
                 RequestValue = "Form2へのリクエスト値です。"
             };
             ViewService.Dialog.Show<Form2, TestDialogRequest>(req, OwnerProvider);
+        }
+
+        public void Close()
+        {
+            ViewService.Dialog.Close<Form2>();
         }
 
         public void ShowDialog()

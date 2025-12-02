@@ -50,5 +50,10 @@ namespace Metroit.Mvvm.WinForms.Test
         {
             ViewModel.ShowDialogWithRequestAndResponse();
         }
+
+        private void DialogCloseButton_Click(object sender, EventArgs e)
+        {
+            ViewModel.Close();
+        }
     }
 }

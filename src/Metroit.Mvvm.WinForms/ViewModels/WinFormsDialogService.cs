@@ -119,6 +119,24 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         }
 
         /// <summary>
+        /// モーダレスダイアログを閉じます。
+        /// </summary>
+        /// <typeparam name="T">ダイアログ。</typeparam>
+        public void Close<T>() where T : Form
+        {
+            var form = Application.OpenForms
+                .OfType<Form>()
+                .FirstOrDefault(x => x.GetType() == typeof(T));
+
+            if (form == null)
+            {
+                return;
+            }
+
+            form.Close();
+        }
+
+        /// <summary>
         /// モーダルダイアログを表示します。
         /// </summary>
         /// <typeparam name="T">フォーム。</typeparam>
@@ -163,19 +181,6 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         public T3 ShowDialog<T1, T2, T3>(T2 request) where T1 : Form, IDialogRequest<T2>, IDialogResponse<T3>, new()
         {
             return ShowDialogWithRequestAndResponseInternal<T2, T3>(typeof(T1), request);
-        }
-
-        /// <summary>
-        /// フォーム型であることを保証します。
-        /// </summary>
-        /// <typeparam name="T">検証する型。</typeparam>
-        /// <exception cref="NotSupportedException"><typeparamref name="T"/>が<see cref="Form"/>を継承していません。</exception>
-        private static void EnsureFormType<T>()
-        {
-            if (!typeof(T).IsSubclassOf(typeof(Form)))
-            {
-                throw new NotSupportedException("Use IWinFormsDialogService for WinForms dialogs.");
-            }
         }
 
         /// <summary>

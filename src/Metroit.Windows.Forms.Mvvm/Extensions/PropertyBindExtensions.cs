@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 
@@ -8,7 +7,7 @@ namespace Metroit.Windows.Forms.Mvvm.Extensions
     /// <summary>
     /// プロパティのバインドを行う拡張メソッドを提供します。
     /// </summary>
-    public static class PropertyBindExtensions
+    internal static class PropertyBindExtensions
     {
         /// <summary>
         /// プロパティをバインドします。

@@ -1,5 +1,4 @@
 ﻿using Metroit.Contracts;
-using Metroit.Mvvm.ViewModels;
 using Metroit.Mvvm.Views;
 using Metroit.Windows.Forms;
 
@@ -29,7 +28,7 @@ namespace Metroit.Mvvm.WinForms.Test
         }
     }
 
-    public class HogeViewModel : ViewModelBase
+    public class HogeViewModel
     {
         public string ViewModelValue { get; set; }
     }

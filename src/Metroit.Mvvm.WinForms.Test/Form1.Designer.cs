@@ -35,6 +35,7 @@
             DialogShowDialogWithRequestAndResponseButton = new Button();
             DialogShowDialogButton = new Button();
             DialogShowDialogWithRequestButton = new Button();
+            DialogCloseButton = new Button();
             SuspendLayout();
             // 
             // MessageButton
@@ -107,11 +108,22 @@
             DialogShowDialogWithRequestButton.UseVisualStyleBackColor = true;
             DialogShowDialogWithRequestButton.Click += DialogShowDialogWithRequestButton_Click;
             // 
+            // DialogCloseButton
+            // 
+            DialogCloseButton.Location = new Point(283, 186);
+            DialogCloseButton.Name = "DialogCloseButton";
+            DialogCloseButton.Size = new Size(102, 23);
+            DialogCloseButton.TabIndex = 9;
+            DialogCloseButton.Text = "Close";
+            DialogCloseButton.UseVisualStyleBackColor = true;
+            DialogCloseButton.Click += DialogCloseButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(397, 247);
+            Controls.Add(DialogCloseButton);
             Controls.Add(DialogShowDialogWithRequestButton);
             Controls.Add(DialogShowDialogButton);
             Controls.Add(DialogShowDialogWithRequestAndResponseButton);
@@ -134,5 +146,6 @@
         private Button DialogShowDialogWithRequestAndResponseButton;
         private Button DialogShowDialogButton;
         private Button DialogShowDialogWithRequestButton;
+        private Button DialogCloseButton;
     }
 }
