@@ -9,7 +9,7 @@
 		<Authors>Takeru Yamaguchi</Authors>
 		<Description>It provides a native MVVM implementation included with Metroit.Windows.Forms.</Description>
 		<Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-		<VersionPrefix>0.0.3</VersionPrefix>
+		<VersionPrefix>0.0.4</VersionPrefix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<FileVersion>$(VersionPrefix)</FileVersion>
 		<PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
