@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Authors>Takeru Yamaguchi</Authors>
+    <Description>Provides convenient functions using ReactiveProperty.</Description>
+    <Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
+    <VersionPrefix>0.0.4</VersionPrefix>
+    <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+    <FileVersion>$(VersionPrefix)</FileVersion>
+    <PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/takiru/Metroit.Mvvm</RepositoryUrl>
+    <PackageTags>MVVM</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageReleaseNotes>
+      Add:
+      - TrackingObject
+      - StatefulTrackingObject
+    </PackageReleaseNotes>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Metroit" Version="4.2.0" />
+    <PackageReference Include="ReactiveProperty" Version="9.8.0" />
+  </ItemGroup>
+</Project>

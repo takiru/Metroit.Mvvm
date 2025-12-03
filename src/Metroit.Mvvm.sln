@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DDB4EF12
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Windows.Forms.Mvvm.Test", "Metroit.Windows.Forms.Mvvm.Test\Metroit.Windows.Forms.Mvvm.Test.csproj", "{0FF08146-6977-44EA-9096-151E42FEEB2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.ReactiveProperty", "Metroit.ReactiveProperty\Metroit.ReactiveProperty.csproj", "{8DC2DBBC-80EC-4966-BB91-7976873F73DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{0FF08146-6977-44EA-9096-151E42FEEB2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FF08146-6977-44EA-9096-151E42FEEB2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FF08146-6977-44EA-9096-151E42FEEB2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DC2DBBC-80EC-4966-BB91-7976873F73DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DC2DBBC-80EC-4966-BB91-7976873F73DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DC2DBBC-80EC-4966-BB91-7976873F73DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DC2DBBC-80EC-4966-BB91-7976873F73DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
