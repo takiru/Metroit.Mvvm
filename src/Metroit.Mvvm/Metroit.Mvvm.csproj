@@ -28,6 +28,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Metroit" Version="4.0.0" />
+    <PackageReference Include="Metroit" Version="4.2.0" />
   </ItemGroup>
 </Project>

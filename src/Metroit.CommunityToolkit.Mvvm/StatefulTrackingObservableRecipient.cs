@@ -19,7 +19,10 @@ namespace Metroit.CommunityToolkit.Mvvm
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public StatefulTrackingObservableRecipient() : base() { }
+        public StatefulTrackingObservableRecipient() : base()
+        {
+            ChangeTracker.TrackingPropertyValueChanged += ChangeTracker_TrackingPropertyValueChanged;
+        }
 
         /// <summary>
         /// 状態を変更します。
@@ -28,6 +31,56 @@ namespace Metroit.CommunityToolkit.Mvvm
         public void ChangeState(ItemState state)
         {
             _state = state;
+        }
+
+        /// <summary>
+        /// 変更追跡のプロパティ値変更によるステート変更を行う。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeTracker_TrackingPropertyValueChanged(object sender, ChangeTracking.PropertyChangedTrackingEventArgs e)
+        {
+            ChangeStateOnPropertyChanged();
+        }
+
+        /// <summary>
+        /// プロパティ変更時に状態を変更します。
+        /// </summary>
+        private void ChangeStateOnPropertyChanged()
+        {
+            // 新規行の値を変更したとき
+            if (State == ItemState.New)
+            {
+                ChangeState(ItemState.NewModified);
+                return;
+            }
+
+            // 無変更行の値を変更したとき
+            if (State == ItemState.NotModified)
+            {
+                ChangeState(ItemState.Modified);
+                return;
+            }
+
+            // 新規行の値を編集して元の値に戻ったとき
+            if (State == ItemState.NewModified)
+            {
+                if (!ChangeTracker.IsSomethingValueChanged)
+                {
+                    ChangeState(ItemState.New);
+                }
+                return;
+            }
+
+            // 無変更行の値を編集して元の値に戻ったとき
+            if (State == ItemState.Modified)
+            {
+                if (!ChangeTracker.IsSomethingValueChanged)
+                {
+                    ChangeState(ItemState.NotModified);
+                }
+                return;
+            }
         }
     }
 }

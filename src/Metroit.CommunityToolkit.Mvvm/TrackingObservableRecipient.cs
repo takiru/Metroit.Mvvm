@@ -31,18 +31,16 @@ namespace Metroit.CommunityToolkit.Mvvm
         public TrackingObservableRecipient() : base()
         {
             _changeTracker = new PropertyChangeTracker<TrackingObservableRecipient<T>>(this);
-
-            PropertyChanged += ChangesObservableRecipient_PropertyChanged;
         }
 
         /// <summary>
         /// 変更通知が行われたプロパティまたはフィールドを追跡する。
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ChangesObservableRecipient_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             _changeTracker.TrackingProperty(e.PropertyName);
+            base.OnPropertyChanged(e);
         }
     }
 }
