@@ -1,12 +1,12 @@
 ﻿using Metroit.Contracts;
-using Metroit.Mvvm.ViewModels;
+using Metroit.Mvvm.Interfaces;
 using Metroit.Mvvm.Views;
 using Metroit.Mvvm.WinForms.ViewModels;
 using System.Diagnostics;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
-    public partial class Form2 : Form, IViewModelProvider<Form1ViewModel>, IDialogRequest<TestDialogRequest>, IDialogResponse<TestDialogResponse>, IDialogActivateAction
+    public partial class Form2 : Form, IViewModelProvider<Form1ViewModel>, IDialogRequest<TestDialogRequest>, IDialogResponse<TestDialogResponse>, IDialogActivateAction<TestDialogRequest>
     {
         public Form1ViewModel ViewModel { get; set; }
         public TestDialogRequest Request { get; set; }
@@ -58,7 +58,7 @@ namespace Metroit.Mvvm.WinForms.Test
             ViewModel.Show();
         }
 
-        public void ExecuteActivateAction(object param)
+        public void ExecuteActivateAction(TestDialogRequest param)
         {
             Debug.WriteLine("アクティブになったときの制御。Activatedイベントの後に発生する。");
         }

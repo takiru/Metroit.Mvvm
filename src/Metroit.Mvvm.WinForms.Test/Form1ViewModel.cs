@@ -48,7 +48,7 @@ namespace Metroit.Mvvm.WinForms.Test
         {
             if (ViewService.Dialog.IsOpened<Form2>())
             {
-                ViewService.Dialog.ActivateWithAction<Form2>();
+                ViewService.Dialog.Activate<Form2>();
                 return;
             }
 
@@ -57,16 +57,17 @@ namespace Metroit.Mvvm.WinForms.Test
 
         public void ShowWithRequest()
         {
-            if (ViewService.Dialog.IsOpened<Form2>())
-            {
-                ViewService.Dialog.Activate<Form2>();
-                return;
-            }
-
             var req = new TestDialogRequest()
             {
                 RequestValue = "Form2へのリクエスト値です。"
             };
+
+            if (ViewService.Dialog.IsOpened<Form2>())
+            {
+                ViewService.Dialog.ActivateWithAction<Form2, TestDialogRequest>(req);
+                return;
+            }
+
             ViewService.Dialog.Show<Form2, TestDialogRequest>(req, OwnerProvider);
         }
 

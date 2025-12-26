@@ -1,5 +1,4 @@
 ﻿using Metroit.Contracts;
-using Metroit.Mvvm.WinForms.ViewModels;
 using System;
 
 namespace Metroit.Mvvm.Interfaces
@@ -57,16 +56,10 @@ namespace Metroit.Mvvm.Interfaces
         /// モーダレスダイアログをアクティブ化して制御を実施します。
         /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
         /// </summary>
-        /// <typeparam name="T">ダイアログ。</typeparam>
-        void ActivateWithAction<T>() where T : IDialogActivateAction, new();
-
-        /// <summary>
-        /// モーダレスダイアログをアクティブ化して制御を実施します。
-        /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
-        /// </summary>
-        /// <typeparam name="T">ダイアログ。</typeparam>
+        /// <typeparam name="T1">ダイアログ。</typeparam>
+        /// <typeparam name="T2">ダイアログへ渡すパラメーターの型。</typeparam>
         /// <param name="param">パラメーター。</param>
-        void ActivateWithAction<T>(object param) where T : IDialogActivateAction, new();
+        void ActivateWithAction<T1, T2>(T2 param) where T1 : IDialogActivateAction<T2>, new();
 
         /// <summary>
         /// モーダレスダイアログを閉じます。

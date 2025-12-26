@@ -1,4 +1,5 @@
 ﻿using Metroit.Contracts;
+using Metroit.Mvvm.Interfaces;
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -99,23 +100,13 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// モーダレスダイアログをアクティブ化して制御を実施します。
         /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
         /// </summary>
-        /// <typeparam name="T">フォーム。</typeparam>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T"/>が<see cref="IDialogActivateAction"/>を実装していません。</exception>
-        public void ActivateWithAction<T>() where T : Form, IDialogActivateAction, new()
-        {
-            ActivateWithAction<T>(null);
-        }
-
-        /// <summary>
-        /// モーダレスダイアログをアクティブ化して制御を実施します。
-        /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
-        /// </summary>
+        /// <typeparam name="T1">扱っているオブジェクト。</typeparam>
+        /// <typeparam name="T2">パラメーターの型。</typeparam>
         /// <param name="param">パラメーター。</param>
-        /// <typeparam name="T">扱っているオブジェクト。</typeparam>
-        /// <exception cref="InvalidOperationException"><typeparamref name="T"/>が<see cref="IDialogActivateAction"/>を実装していません。</exception>
-        public void ActivateWithAction<T>(object param) where T : Form, IDialogActivateAction, new()
+        /// <exception cref="InvalidOperationException"><typeparamref name="T1"/>が<see cref="IDialogActivateAction{T}"/>を実装していません。</exception>
+        public void ActivateWithAction<T1, T2>(T2 param) where T1 : Form, IDialogActivateAction<T2>, new()
         {
-            ActivateWithActionInternal(typeof(T), param);
+            ActivateWithActionInternal<T2>(typeof(T1), param);
         }
 
         /// <summary>
@@ -284,8 +275,8 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// </summary>
         /// <param name="formType">フォームタイプ。</param>
         /// <param name="param">パラメーター。</param>
-        /// <exception cref="InvalidOperationException"><paramref name="param"/>が<see cref="IDialogActivateAction"/>を実装していない。</exception>
-        private static void ActivateWithActionInternal(Type formType, object param)
+        /// <exception cref="InvalidOperationException"><paramref name="param"/>が<see cref="IDialogActivateAction{T}"/>を実装していない。</exception>
+        private static void ActivateWithActionInternal<T>(Type formType, T param)
         {
             var form = Application.OpenForms
                 .OfType<Form>()
@@ -300,7 +291,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
                 return;
             }
 
-            EnsureDialogActivateActionInterface(form.GetType());
+            EnsureDialogActivateActionInterface<T>(form.GetType());
 
             if (form.WindowState == FormWindowState.Minimized)
             {
@@ -308,7 +299,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
             }
 
             form.Activate();
-            var activateAction = (IDialogActivateAction)form;
+            var activateAction = (IDialogActivateAction<T>)form;
             activateAction.ExecuteActivateAction(param);
         }
 
@@ -412,14 +403,14 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         }
 
         /// <summary>
-        /// <see cref="IDialogActivateAction"/>の実装を保証します。
+        /// <see cref="IDialogActivateAction{T}"/>の実装を保証します。
         /// </summary>
         /// <param name="formType">検証するフォームタイプ。</param>
-        /// <exception cref="InvalidOperationException"><paramref name="formType"/>が<see cref="IDialogActivateAction"/>を実装していない。</exception>
-        private static void EnsureDialogActivateActionInterface(Type formType)
+        /// <exception cref="InvalidOperationException"><paramref name="formType"/>が<see cref="IDialogActivateAction{T}"/>を実装していない。</exception>
+        private static void EnsureDialogActivateActionInterface<T>(Type formType)
         {
             var interfaces = formType.GetInterfaces();
-            if (!IsImplementedDialogActivateAction(interfaces))
+            if (!IsImplementedDialogActivateAction<T>(interfaces))
             {
                 throw new InvalidOperationException(
                     $"{formType.Name} does not implement IDialogActivateAction");
@@ -455,14 +446,16 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         }
 
         /// <summary>
-        /// 指定されたインターフェイス群に<see cref="IDialogActivateAction"/>が含まれるか確認する。
+        /// 指定されたインターフェイス群に<see cref="IDialogActivateAction{T}"/>が含まれるか確認する。
         /// </summary>
         /// <param name="interfaces">インターフェース。</param>
-        /// <returns><see cref="IDialogActivateAction"/>が含まれるときは<see langword="true"/>, それ以外は<see langword="false"/>を返却する。</returns>
-        private static bool IsImplementedDialogActivateAction(Type[] interfaces)
+        /// <returns><see cref="IDialogActivateAction{T}"/>が含まれるときは<see langword="true"/>, それ以外は<see langword="false"/>を返却する。</returns>
+        private static bool IsImplementedDialogActivateAction<T>(Type[] interfaces)
         {
             return interfaces.Any(x =>
-                x == typeof(IDialogActivateAction));
+                x.IsGenericType &&
+                x.GetGenericTypeDefinition() == typeof(IDialogActivateAction<>) &&
+                x.GetGenericArguments()[0] == typeof(T));
         }
     }
 }
