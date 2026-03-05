@@ -1,12 +1,15 @@
 ﻿using Metroit.Annotations;
+using Metroit.ChangeTracking.Generic;
+using System.ComponentModel;
 
-namespace Metroit.CommunityToolkit.Mvvm
+namespace Metroit.CommunityToolkit.Mvvm.ChangeTracking
 {
     /// <summary>
     /// 状態を持つ変更追跡が可能なオブジェクトを提供します。
     /// </summary>
-    /// <typeparam name="T">状態管理と変更追跡を行うクラス。</typeparam>
-    public class StatefulTrackingObservableObject<T> : TrackingObservableObject<T>, IStateObject where T : class
+    /// <typeparam name="T1">変更追跡対象となるオブジェクト。</typeparam>
+    /// <typeparam name="T2">トラッカーオブジェクト。</typeparam>
+    public class StatefulTrackingObservableObject<T1, T2> : TrackingObservableObject<T1, T2>, IStateObject where T1 : class where T2 : PropertyChangeTracker<T1>, new()
     {
         private ItemState _state = ItemState.New;
 
@@ -21,7 +24,7 @@ namespace Metroit.CommunityToolkit.Mvvm
         /// </summary>
         public StatefulTrackingObservableObject() : base()
         {
-            ChangeTracker.TrackingPropertyValueChanged += ChangeTracker_TrackingPropertyValueChanged;
+            PropertyChanged += TrackingObject_PropertyChanged;
         }
 
         /// <summary>
@@ -34,11 +37,11 @@ namespace Metroit.CommunityToolkit.Mvvm
         }
 
         /// <summary>
-        /// 変更追跡のプロパティ値変更によるステート変更を行う。
+        /// 変更通知が行われたプロパティまたはフィールドを追跡する。
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ChangeTracker_TrackingPropertyValueChanged(object sender, ChangeTracking.PropertyChangedTrackingEventArgs e)
+        private void TrackingObject_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             ChangeStateOnPropertyChanged();
         }
@@ -48,21 +51,21 @@ namespace Metroit.CommunityToolkit.Mvvm
         /// </summary>
         private void ChangeStateOnPropertyChanged()
         {
-            // 新規行の値を変更したとき
+            // 新規オブジェクトの値を変更したとき
             if (State == ItemState.New)
             {
                 ChangeState(ItemState.NewModified);
                 return;
             }
 
-            // 無変更行の値を変更したとき
+            // 無変更オブジェクトの値を変更したとき
             if (State == ItemState.NotModified)
             {
                 ChangeState(ItemState.Modified);
                 return;
             }
 
-            // 新規行の値を編集して元の値に戻ったとき
+            // 新規オブジェクトの値を編集して元の値に戻ったとき
             if (State == ItemState.NewModified)
             {
                 if (!ChangeTracker.IsSomethingValueChanged)
@@ -72,7 +75,7 @@ namespace Metroit.CommunityToolkit.Mvvm
                 return;
             }
 
-            // 無変更行の値を編集して元の値に戻ったとき
+            // 無変更オブジェクトの値を編集して元の値に戻ったとき
             if (State == ItemState.Modified)
             {
                 if (!ChangeTracker.IsSomethingValueChanged)

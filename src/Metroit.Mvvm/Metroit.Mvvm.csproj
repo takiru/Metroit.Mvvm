@@ -16,18 +16,11 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageReleaseNotes>
-      Reviewed:
-      Implemented IViewModel.
-      - ViewModelBase
-
-      Added:
-      - IViewModel
-    </PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Metroit" Version="4.2.0" />
+    <PackageReference Include="Metroit" Version="4.1.0" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ using Metroit.ChangeTracking.Generic;
 using Reactive.Bindings;
 using System.Reflection;
 
-namespace Metroit.ReactiveProperty
+namespace Metroit.ReactiveProperty.ChangeTracking
 {
     /// <summary>
     /// オブジェクト内にある<see cref="ReactiveProperty{T}"/>を実装したプロパティおよびフィールドの変更追跡を提供します。<br/>
@@ -22,8 +22,14 @@ namespace Metroit.ReactiveProperty
         /// <returns>変更追跡しているプロパティまたはフィールドの値。</returns>
         protected override object GetPropertyValue(PropertyInfo propertyInfo, object instance)
         {
-            var rp = propertyInfo.GetValue(instance) as IReactiveProperty;
-            return rp?.Value ?? null;
+            var value = propertyInfo.GetValue(instance);
+
+            if (value is IReactiveProperty rp)
+            {
+                return rp?.Value ?? null;
+            }
+
+            return value;
         }
     }
 }

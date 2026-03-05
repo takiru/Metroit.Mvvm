@@ -1,4 +1,6 @@
-﻿namespace Metroit.ReactiveProperty
+﻿using Reactive.Bindings;
+
+namespace Metroit.ReactiveProperty.ChangeTracking
 {
     /// <summary>
     /// プロパティの変更追跡情報を提供します。
@@ -6,9 +8,9 @@
     internal class PropertyTrackingInfo
     {
         /// <summary>
-        /// 追跡するReactivePropertyを取得または設定します。。
+        /// 追跡するReactivePropertyを取得または設定します。
         /// </summary>
-        public object ReactiveProperty { get; set; }
+        public IReactiveProperty ReactiveProperty { get; set; }
 
         /// <summary>
         /// 追跡が有効かどうかを取得または設定します。

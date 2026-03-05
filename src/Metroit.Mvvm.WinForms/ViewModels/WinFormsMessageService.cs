@@ -74,7 +74,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        public DialogResultType ConfirmOkCancel(string message, string title, MessageBoxDefaultButtonType defaultButton)
+        public virtual DialogResultType ConfirmOkCancel(string message, string title, MessageBoxDefaultButtonType defaultButton)
         {
             return WinFormsDialogResultToGeneralDialogResult(MessageBox.Show(message, title,
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
@@ -120,7 +120,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        public DialogResultType ConfirmYesNo(string message, string title, MessageBoxDefaultButtonType defaultButton)
+        public virtual DialogResultType ConfirmYesNo(string message, string title, MessageBoxDefaultButtonType defaultButton)
         {
             return WinFormsDialogResultToGeneralDialogResult(MessageBox.Show(message, title,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -166,7 +166,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <param name="title">タイトル。</param>
         /// <param name="defaultButton">既定のボタン。</param>
         /// <returns>指示結果。</returns>
-        public DialogResultType ConfirmYesNoCancel(string message, string title, MessageBoxDefaultButtonType defaultButton)
+        public virtual DialogResultType ConfirmYesNoCancel(string message, string title, MessageBoxDefaultButtonType defaultButton)
         {
             return WinFormsDialogResultToGeneralDialogResult(MessageBox.Show(message, title,
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question,
@@ -187,7 +187,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// </summary>
         /// <param name="message">メッセージ。</param>
         /// <param name="title">タイトル。</param>
-        public void Error(string message, string title)
+        public virtual void Error(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -206,7 +206,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// </summary>
         /// <param name="message">メッセージ。</param>
         /// <param name="title">タイトル。</param>
-        public void Information(string message, string title)
+        public virtual void Information(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -225,7 +225,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// </summary>
         /// <param name="message">メッセージ。</param>
         /// <param name="title">タイトル。</param>
-        public void Warning(string message, string title)
+        public virtual void Warning(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }

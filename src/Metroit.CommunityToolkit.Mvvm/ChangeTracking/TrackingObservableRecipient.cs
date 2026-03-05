@@ -1,46 +1,50 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Metroit.Annotations;
+using Metroit.ChangeTracking;
 using Metroit.ChangeTracking.Generic;
 using System.ComponentModel;
 
-namespace Metroit.CommunityToolkit.Mvvm
+namespace Metroit.CommunityToolkit.Mvvm.ChangeTracking
 {
     /// <summary>
     /// 変更追跡が可能なオブジェクトを提供します。
     /// </summary>
-    /// <typeparam name="T">変更追跡を行うクラス。</typeparam>
-    public class TrackingObservableRecipient<T> : ObservableRecipient, IPropertyChangeTrackerProvider<TrackingObservableRecipient<T>> where T : class
+    /// <typeparam name="T1">変更追跡対象オブジェクト。</typeparam>
+    /// <typeparam name="T2">トラッカー。</typeparam>
+    public class TrackingObservableRecipient<T1, T2> : ObservableRecipient, IPropertyChangeTrackerProvider<T1> where T1 : class where T2 : PropertyChangeTracker<T1>, new()
     {
-        private PropertyChangeTracker<TrackingObservableRecipient<T>> _changeTracker;
+        private readonly T2 _changeTracker;
 
         /// <summary>
         /// 変更追跡を取得します。
         /// </summary>
         [NoTracking]
-        public PropertyChangeTracker<TrackingObservableRecipient<T>> ChangeTracker => _changeTracker;
+        public PropertyChangeTracker<T1> ChangeTracker => _changeTracker;
 
         /// <summary>
         /// 変更追跡を取得します。
         /// </summary>
         [NoTracking]
-        ChangeTracking.PropertyChangeTracker ChangeTracking.IPropertyChangeTrackerProvider.ChangeTracker => ChangeTracker;
+        PropertyChangeTracker IPropertyChangeTrackerProvider.ChangeTracker => ChangeTracker;
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
         public TrackingObservableRecipient() : base()
         {
-            _changeTracker = new PropertyChangeTracker<TrackingObservableRecipient<T>>(this);
+            _changeTracker = new T2();
+            _changeTracker.SetInstance(this);
+            PropertyChanged += TrackingObject_PropertyChanged;
         }
 
         /// <summary>
         /// 変更通知が行われたプロパティまたはフィールドを追跡する。
         /// </summary>
+        /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+        private void TrackingObject_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             _changeTracker.TrackingProperty(e.PropertyName);
-            base.OnPropertyChanged(e);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Metroit.Mvvm.Views;
-using Metroit.Mvvm.WinForms.ViewModels;
+using Metroit.Mvvm.WinForms.Views;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
@@ -11,9 +11,8 @@ namespace Metroit.Mvvm.WinForms.Test
         {
             InitializeComponent();
 
-            var viewService = new WinFormsViewService(new WinFormsDialogService(), new WinFormsMessageService(() => this));
+            var viewService = WinFormsViewService.Create(this);
             ViewModel = new Form1ViewModel(viewService);
-            ViewModel.OwnerProvider = () => this;
         }
 
         private void MessageButton_Click(object sender, EventArgs e)

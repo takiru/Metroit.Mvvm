@@ -26,7 +26,7 @@ namespace Metroit.CommunityToolkit.Mvvm.Test
         public void ExecuteMethod()
         {
             var a = Text;
-            MessageBox.Show($"{ChangeTracker.ContainsChangedProperty(nameof(Text))}");
+            MessageBox.Show($"{ChangeTracker.HasChanged(nameof(Text))}");
 
         }
 

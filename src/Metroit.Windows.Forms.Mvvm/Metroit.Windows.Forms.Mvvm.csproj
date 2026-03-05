@@ -18,16 +18,12 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageReleaseNotes>
-      Reviewed:
-      Changed the ViewModel recognized in the constructor and internally to Metroit.Mvvm.ViewModels.IViewModel.
-      - MetViewBase
-    </PackageReleaseNotes>
+		<PackageReleaseNotes></PackageReleaseNotes>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Metroit.Windows.Forms" Version="4.0.0" />
+	  <PackageReference Include="Metroit.Windows.Forms" Version="4.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,16 +1,14 @@
-﻿using Metroit.ChangeTracking;
-using Metroit.Mvvm.WinForms.ViewModels;
-using System.ComponentModel;
+﻿using Metroit.ChangeTracking.Generic;
+using Metroit.Mvvm.WinForms.Views;
 using System.Diagnostics;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
-    //public class Form1ViewModel : WinFormsViewModelBase
-    public class Form1ViewModel : TrackingViewModelBase<Form1ViewModel>
+    public class Form1ViewModel : TrackingViewModelBase<Form1ViewModel, PropertyChangeTracker<Form1ViewModel>>
     {
         public Form1ViewModel(WinFormsViewService viewService) : base(viewService)
         {
-
+            
         }
 
         public void MessageTest()
@@ -42,8 +40,6 @@ namespace Metroit.Mvvm.WinForms.Test
             ViewService.Message.Error("エラー", "エラータイトル");
         }
 
-        public Func<Form> OwnerProvider;
-
         public void Show()
         {
             if (ViewService.Dialog.IsOpened<Form2>())
@@ -68,7 +64,7 @@ namespace Metroit.Mvvm.WinForms.Test
                 return;
             }
 
-            ViewService.Dialog.Show<Form2, TestDialogRequest>(req, OwnerProvider);
+            ViewService.Dialog.ShowWithOwner<Form2, TestDialogRequest>(req);
         }
 
         public void Close()

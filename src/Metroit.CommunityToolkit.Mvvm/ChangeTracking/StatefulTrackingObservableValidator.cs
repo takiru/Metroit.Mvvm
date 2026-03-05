@@ -1,13 +1,15 @@
 ﻿using Metroit.Annotations;
 using Metroit.ChangeTracking.Generic;
-using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
-namespace Metroit.ReactiveProperty
+namespace Metroit.CommunityToolkit.Mvvm.ChangeTracking
 {
     /// <summary>
     /// 状態を持つ変更追跡が可能なオブジェクトを提供します。
     /// </summary>
-    public abstract class StatefulReactiveTrackingObject<T1, T2> : ReactiveTrackingObject<T1, T2> where T1 : class where T2 : PropertyChangeTracker<T1>, new()
+    /// <typeparam name="T1">変更追跡対象となるオブジェクト。</typeparam>
+    /// <typeparam name="T2">トラッカーオブジェクト。</typeparam>
+    public class StatefulTrackingObservableValidator<T1, T2> : TrackingObservableValidator<T1, T2>, IStateObject where T1 : class where T2 : PropertyChangeTracker<T1>, new()
     {
         private ItemState _state = ItemState.New;
 
@@ -20,9 +22,9 @@ namespace Metroit.ReactiveProperty
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public StatefulReactiveTrackingObject() : base()
+        public StatefulTrackingObservableValidator() : base()
         {
-
+            PropertyChanged += TrackingObject_PropertyChanged;
         }
 
         /// <summary>
@@ -35,13 +37,13 @@ namespace Metroit.ReactiveProperty
         }
 
         /// <summary>
-        /// 値変更の通知を行います。
+        /// 変更通知が行われたプロパティまたはフィールドを追跡する。
         /// </summary>
-        /// <param name="propertyName">プロパティ名。</param>
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TrackingObject_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             ChangeStateOnPropertyChanged();
-            base.OnPropertyChanged(propertyName);
         }
 
         /// <summary>
@@ -49,31 +51,31 @@ namespace Metroit.ReactiveProperty
         /// </summary>
         private void ChangeStateOnPropertyChanged()
         {
-            // 新規行の値を変更したとき
+            // 新規オブジェクトの値を変更したとき
             if (State == ItemState.New)
             {
                 ChangeState(ItemState.NewModified);
                 return;
             }
 
-            // 無変更行の値を変更したとき
+            // 無変更オブジェクトの値を変更したとき
             if (State == ItemState.NotModified)
             {
                 ChangeState(ItemState.Modified);
                 return;
             }
 
-            // 新規行の値を編集して元の値に戻ったとき
+            // 新規オブジェクトの値を編集して元の値に戻ったとき
             if (State == ItemState.NewModified)
             {
-                if(!ChangeTracker.IsSomethingValueChanged)
+                if (!ChangeTracker.IsSomethingValueChanged)
                 {
                     ChangeState(ItemState.New);
                 }
                 return;
             }
 
-            // 無変更行の値を編集して元の値に戻ったとき
+            // 無変更オブジェクトの値を編集して元の値に戻ったとき
             if (State == ItemState.Modified)
             {
                 if (!ChangeTracker.IsSomethingValueChanged)

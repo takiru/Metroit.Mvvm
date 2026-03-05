@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.Windows.Forms.Mvvm.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.ReactiveProperty", "Metroit.ReactiveProperty\Metroit.ReactiveProperty.csproj", "{8DC2DBBC-80EC-4966-BB91-7976873F73DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metroit.ReactiveProperty.Test", "Metroit.ReactiveProperty.Test\Metroit.ReactiveProperty.Test.csproj", "{FD2291C2-E22E-062B-1CA7-FEF9D8A32756}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{8DC2DBBC-80EC-4966-BB91-7976873F73DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DC2DBBC-80EC-4966-BB91-7976873F73DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DC2DBBC-80EC-4966-BB91-7976873F73DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD2291C2-E22E-062B-1CA7-FEF9D8A32756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD2291C2-E22E-062B-1CA7-FEF9D8A32756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD2291C2-E22E-062B-1CA7-FEF9D8A32756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD2291C2-E22E-062B-1CA7-FEF9D8A32756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{0B57FA2F-25F0-4444-8E19-4D9D1274B1C6} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 		{DF090137-794A-4E20-8DB8-B76B6F12095F} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 		{0FF08146-6977-44EA-9096-151E42FEEB2F} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{FD2291C2-E22E-062B-1CA7-FEF9D8A32756} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77DE6570-9BA8-44DE-8142-E0AAB07967A5}

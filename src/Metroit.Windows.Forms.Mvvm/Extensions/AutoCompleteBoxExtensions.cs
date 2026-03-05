@@ -15,12 +15,12 @@ namespace Metroit.Windows.Forms.Mvvm.Extensions
         /// <param name="autoCompleteBox">オートコンプリートボックスオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
         /// <param name="valueMember">値のメンバ名。</param>
-        /// <param name="displayMenber">表示値のメンバ名。</param>
-        public static void BindDataSource<T>(this AutoCompleteBox autoCompleteBox, Expression<Func<T>> expression, string valueMember, string displayMenber)
+        /// <param name="displayMember">表示値のメンバ名。</param>
+        public static void BindDataSource<T>(this AutoCompleteBox autoCompleteBox, Expression<Func<T>> expression, string valueMember, string displayMember)
         {
             PropertyBindExtensions.Bind(() => autoCompleteBox.DataSource, expression);
             autoCompleteBox.ValueMember = valueMember;
-            autoCompleteBox.DisplayMember = displayMenber;
+            autoCompleteBox.DisplayMember = displayMember;
         }
     }
 }

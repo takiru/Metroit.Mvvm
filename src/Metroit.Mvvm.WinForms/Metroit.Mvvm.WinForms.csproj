@@ -17,18 +17,9 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageReleaseNotes>
-      Obsoleted:
-      - ActiveFormTracker
-    </PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="ViewModels\IWinFormsViewModel.cs" />
-    <Compile Remove="ViewModels\WinFormsViewModelBase.cs" />
-    <Compile Remove="ViewModels\WinFormsViewService.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Metroit.Mvvm\Metroit.Mvvm.csproj" />

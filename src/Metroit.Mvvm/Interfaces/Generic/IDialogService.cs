@@ -5,9 +5,15 @@ namespace Metroit.Mvvm.Interfaces.Generic
 {
     /// <summary>
     /// ダイアログのサービスを提供します。
+    /// <typeparam name="TDialog">ダイアログ。</typeparam>
     /// </summary>
     public interface IDialogService<TDialog> where TDialog : class
     {
+        /// <summary>
+        /// ダイアログを表示するオーナーを取得します。
+        /// </summary>
+        object Owner { get; }
+
         /// <summary>
         /// 指定したダイアログが開かれているかどうかを取得します。
         /// </summary>
@@ -25,8 +31,7 @@ namespace Metroit.Mvvm.Interfaces.Generic
         /// モーダレスダイアログを表示します。
         /// </summary>
         /// <typeparam name="T">ダイアログ。</typeparam>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
-        void Show<T>(Func<TDialog> ownerProvider) where T : TDialog, new();
+        void ShowWithOwner<T>() where T : TDialog, new();
 
         /// <summary>
         /// リクエストを持つモーダレスダイアログを表示します。
@@ -42,8 +47,7 @@ namespace Metroit.Mvvm.Interfaces.Generic
         /// <typeparam name="T1">ダイアログ。</typeparam>
         /// <typeparam name="T2">リクエスト。</typeparam>
         /// <param name="request">リクエスト。</param>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
-        void Show<T1, T2>(T2 request, Func<TDialog> ownerProvider) where T1 : TDialog, IDialogRequest<T2>, new();
+        void ShowWithOwner<T1, T2>(T2 request) where T1 : TDialog, IDialogRequest<T2>, new();
 
         /// <summary>
         /// モーダレスダイアログをアクティブ化します。

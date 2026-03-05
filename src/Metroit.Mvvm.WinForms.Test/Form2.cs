@@ -1,30 +1,22 @@
 ﻿using Metroit.Contracts;
 using Metroit.Mvvm.Interfaces;
 using Metroit.Mvvm.Views;
-using Metroit.Mvvm.WinForms.ViewModels;
-using System.Diagnostics;
+using Metroit.Mvvm.WinForms.Views;
 
 namespace Metroit.Mvvm.WinForms.Test
 {
-    public partial class Form2 : Form, IViewModelProvider<Form1ViewModel>, IDialogRequest<TestDialogRequest>, IDialogResponse<TestDialogResponse>, IDialogActivateAction<TestDialogRequest>
+    public partial class Form2 : Form, IViewModelProvider<Form1ViewModel>, IDialogRequest<TestDialogRequest>,
+        IDialogResponse<TestDialogResponse>, IDialogActivateAction<TestDialogRequest>
     {
         public Form1ViewModel ViewModel { get; set; }
         public TestDialogRequest Request { get; set; }
 
-        private TestDialogResponse _response = new TestDialogResponse();
-
-        TestDialogResponse IDialogResponse<TestDialogResponse>.Response { get => _response; set => _response = value; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public TestDialogResponse Response { get => _response; private set => _response = value; }
-
+        public TestDialogResponse Response { get; set; }
 
         public Form2()
         {
             InitializeComponent();
-            var viewService = new WinFormsViewService(new WinFormsDialogService(), new WinFormsMessageService(() => this));
+            var viewService = WinFormsViewService.Create(this);
             ViewModel = new Form1ViewModel(viewService);
         }
 
@@ -60,7 +52,7 @@ namespace Metroit.Mvvm.WinForms.Test
 
         public void ExecuteActivateAction(TestDialogRequest param)
         {
-            Debug.WriteLine("アクティブになったときの制御。Activatedイベントの後に発生する。");
+            MessageBox.Show($"アクティブになったときの制御。Activatedイベントの後に発生する。\r\nリクエスト値＝{param.RequestValue}");
         }
     }
 }

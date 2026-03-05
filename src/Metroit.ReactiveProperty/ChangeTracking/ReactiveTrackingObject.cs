@@ -1,48 +1,62 @@
 ﻿using Metroit.ChangeTracking;
-using Metroit.ChangeTracking.Generic;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Disposables;
-using System.Reactive.Linq;
+using System.Reflection;
+using Metroit.Annotations;
 
-namespace Metroit.ReactiveProperty
+namespace Metroit.ReactiveProperty.ChangeTracking
 {
     /// <summary>
     /// 変更追跡が可能なオブジェクトを提供します。
     /// </summary>
-    public abstract class ReactiveTrackingObject<T1, T2> : TrackingObject<T1, T2>, IDisposable where T1 : class where T2 : PropertyChangeTracker<T1>, new()
+    /// <typeparam name="T1">変更追跡対象オブジェクト。</typeparam>
+    /// <typeparam name="T2">トラッカー。</typeparam>
+
+    public class ReactiveTrackingObject<T1, T2> : TrackingObject<T1, T2> where T1 : class where T2 : ReactivePropertyChangeTracker<T1>, new()
     {
-        private CompositeDisposable _disposables = new CompositeDisposable();
-        private Dictionary<string, PropertyTrackingInfo> _propertyTracking = new Dictionary<string, PropertyTrackingInfo>();
+        private CompositeDisposable _disposables;
+        private readonly Dictionary<string, PropertyTrackingInfo> _propertyTracking = new Dictionary<string, PropertyTrackingInfo>();
 
         /// <summary>
         /// 新しいインスタンスを生成します。
         /// </summary>
-        public ReactiveTrackingObject() : base()
-        {
-
-        }
+        public ReactiveTrackingObject() : base() { }
 
         /// <summary>
-        /// すべての<see cref="ReactiveProperty{T}"/> を購読し、変更時に<see cref="TrackingObject{T, T2}.PropertyChanged"/>を発行するように設定します。<br/>
+        /// <see cref="NoTrackingAttribute"/> が指定されていないすべての<see cref="IReactiveProperty{T}"/>プロパティを購読し、変更時に<see cref="TrackingObject{T, T2}.PropertyChanged"/>を発行するように設定します。<br/>
         /// このメソッドを呼び出した後、プロパティは自動的に監視され、必ず<see cref="TrackingObject{T, T2}.PropertyChanged"/>が発生するようになります。<br/>
-        /// コンストラクタの購読を開始したいタイミングで呼び出してください。<br/>
-        /// 個別に設定する<see cref="ReactiveProperty{T}.Subscribe(IObserver{T})"/>よりも前に呼び出す必要があります。
         /// </summary>
+        /// <remarks>
+        /// コンストラクタの購読を開始したいタイミングで呼び出してください。<br/>
+        /// 個別に設定する<see cref="IObservable{T}.Subscribe(IObserver{T})"/>よりも前に呼び出す必要があります。
+        /// </remarks>
         protected void InitializePropertyTracking()
         {
-            var properties = GetType().GetProperties();
+            // 購読済みのプロパティをすべて購読解除する
+            _disposables?.Dispose();
+            _disposables = new CompositeDisposable();
+            _propertyTracking.Clear();
+
+            var properties = GetType().GetProperties(BindingFlags.Instance |
+                                                              BindingFlags.Public | BindingFlags.NonPublic | 
+                                                              BindingFlags.GetProperty)
+                .Where(x => IsTrackingProperty(x));
 
             foreach (var property in properties)
             {
+                // ジェネリッククラスではないものは対象外
                 if (!property.PropertyType.IsGenericType)
                 {
                     continue;
                 }
-                if (property.PropertyType.GetGenericTypeDefinition() != typeof(ReactiveProperty<>))
+
+                // IReactiveProperty<>を実装していないものは対象外
+                if (property.PropertyType.GetInterfaces().All(x => x.GetGenericTypeDefinition() != typeof(IReactiveProperty<>)))
                 {
                     continue;
                 }
@@ -57,14 +71,29 @@ namespace Metroit.ReactiveProperty
                     continue;
                 }
 
-                // NOTE: プロパティ値がnullのときに型推論ができないため、SubscribeReactivePropertyをリフレクションで呼び出す。
+                // NOTE: プロパティ値がnullのときに型推論ができないため、SubscribeReactiveProperty をリフレクションで呼び出す。
                 var valueType = property.PropertyType.GetGenericArguments()[0];
                 var subscribeMethod = typeof(ReactiveTrackingObject<T1, T2>)
                     .GetMethod(nameof(SubscribeReactiveProperty),
-                               System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                               BindingFlags.NonPublic | BindingFlags.Instance)
                     .MakeGenericMethod(valueType);
                 subscribeMethod.Invoke(this, new[] { reactiveProperty, property.Name });
             }
+        }
+
+        /// <summary>
+        /// 変更追跡を行うプロパティかどうかを取得する。
+        /// </summary>
+        /// <param name="pi">プロパティ情報。</param>
+        /// <returns>変更追跡を行うプロパティの場合は true, それ以外は false を返却する。</returns>
+        private bool IsTrackingProperty(PropertyInfo pi)
+        {
+            if (pi.GetCustomAttribute(typeof(NoTrackingAttribute)) != null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -73,24 +102,26 @@ namespace Metroit.ReactiveProperty
         /// <typeparam name="T">プロパティの型。</typeparam>
         /// <param name="property">購読を行うプロパティ。</param>
         /// <param name="propertyName">購読を行うプロパティ名。</param>
-        private void SubscribeReactiveProperty<T>(ReactiveProperty<T> property, string propertyName)
+        private void SubscribeReactiveProperty<T>(IReactiveProperty<T> property, string propertyName)
         {
-            // 既に登録済みの場合はスキップ
-            if (_propertyTracking.ContainsKey(propertyName))
-            {
-                return;
-            }
-
-            // 購読後の変更時にPropertyChangedを発行することを購読する
+            // 購読後の変更時にトラッキングおよびPropertyChangedを発行することを購読する
             property
-                .Skip(1)
                 .Subscribe(_ =>
                 {
-                    if (_propertyTracking.TryGetValue(propertyName, out var info) && info.Enabled)
+                    // 購読直後はトラッキングしていないので何もしない
+                    if (!_propertyTracking.TryGetValue(propertyName, out var trackingInfo))
                     {
-                        ChangeTracker.TrackingProperty(propertyName);
-                        OnPropertyChanged(propertyName);
+                        return;
                     }
+
+                    // トラッキングを停止しているなら何もしない
+                    if (!trackingInfo.Enabled)
+                    {
+                        return;
+                    }
+
+                    ChangeTracker.TrackingProperty(propertyName);
+                    OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
                 })
                 .AddTo(_disposables);
 
@@ -102,7 +133,7 @@ namespace Metroit.ReactiveProperty
         }
 
         /// <summary>
-        /// 指定したプロパティのPropertyChanged通知を停止します。
+        /// 指定したプロパティのトラッキングと PropertyChanged 通知を停止します。
         /// </summary>
         /// <param name="propertyName">通知を停止するプロパティ名。</param>
         protected void DisablePropertyNotification(string propertyName)
@@ -114,7 +145,7 @@ namespace Metroit.ReactiveProperty
         }
 
         /// <summary>
-        /// 指定したプロパティのPropertyChanged通知を再開します。
+        /// 指定したプロパティのトラッキングと PropertyChanged 通知を再開します。
         /// </summary>
         /// <param name="propertyName">通知を再開するプロパティ名。</param>
         protected void EnablePropertyNotification(string propertyName)
@@ -126,7 +157,7 @@ namespace Metroit.ReactiveProperty
         }
 
         /// <summary>
-        /// すべてのプロパティのPropertyChanged通知を停止します。
+        /// すべてのプロパティのトラッキングと PropertyChanged 通知を停止します。
         /// </summary>
         protected void DisableAllPropertiesNotification()
         {
@@ -137,7 +168,7 @@ namespace Metroit.ReactiveProperty
         }
 
         /// <summary>
-        /// すべてのプロパティのPropertyChanged通知を再開します。
+        /// すべてのプロパティのトラッキングと PropertyChanged 通知を再開します。
         /// </summary>
         protected void EnableAllPropertiesNotification()
         {
@@ -152,7 +183,7 @@ namespace Metroit.ReactiveProperty
         /// </summary>
         public void Dispose()
         {
-            _disposables?.Dispose();
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 

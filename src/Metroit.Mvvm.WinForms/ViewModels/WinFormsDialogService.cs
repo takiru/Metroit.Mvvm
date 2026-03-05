@@ -12,6 +12,13 @@ namespace Metroit.Mvvm.WinForms.ViewModels
     /// </summary>
     public class WinFormsDialogService : IWinFormsDialogService
     {
+        private Func<Form> _ownerFormProvider;
+
+        /// <summary>
+        /// メッセージを表示するオーナーを取得します。
+        /// </summary>
+        public object Owner => _ownerFormProvider?.Invoke();
+
         /// <summary>
         /// 指定したウィンドウの表示状態を設定します。
         /// </summary>
@@ -32,6 +39,15 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         public WinFormsDialogService()
         {
 
+        }
+
+        /// <summary>
+        /// 新しいインスタンスを生成します。
+        /// </summary>
+        /// <param name="ownerFormProvider">オーナーフォームを取得するためのプロバイダー。</param>
+        public WinFormsDialogService(Func<Form> ownerFormProvider)
+        {
+            _ownerFormProvider = ownerFormProvider;
         }
 
         /// <summary>
@@ -57,10 +73,9 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// モーダレスダイアログを表示します。
         /// </summary>
         /// <typeparam name="T">フォーム。</typeparam>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
-        public void Show<T>(Func<Form> ownerProvider) where T : Form, new()
+        public void ShowWithOwner<T>() where T : Form, new()
         {
-            ShowInternal(typeof(T), ownerProvider);
+            ShowInternal(typeof(T), (Form)Owner);
         }
 
         /// <summary>
@@ -80,10 +95,9 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <typeparam name="T1">フォーム。</typeparam>
         /// <typeparam name="T2">リクエスト。</typeparam>
         /// <param name="request">リクエスト。</param>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
-        public void Show<T1, T2>(T2 request, Func<Form> ownerProvider) where T1 : Form, IDialogRequest<T2>, new()
+        public void ShowWithOwner<T1, T2>(T2 request) where T1 : Form, IDialogRequest<T2>, new()
         {
-            ShowWithRequestInternal(typeof(T1), request, ownerProvider);
+            ShowWithRequestInternal(typeof(T1), request, (Form)Owner);
         }
 
         /// <summary>
@@ -113,7 +127,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// モーダレスダイアログを閉じます。
         /// </summary>
         /// <typeparam name="T">ダイアログ。</typeparam>
-        public void Close<T>() where T : Form
+        public virtual void Close<T>() where T : Form
         {
             var form = Application.OpenForms
                 .OfType<Form>()
@@ -189,7 +203,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// </summary>
         /// <param name="formType">フォームタイプ。</param>
         /// <returns>開かれている場合は true, それ以外は false を返却します。</returns>
-        private bool IsOpenedInternal(Type formType)
+        protected virtual bool IsOpenedInternal(Type formType)
         {
             var form = Application.OpenForms
                 .OfType<Form>()
@@ -202,14 +216,14 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// モーダレスダイアログを表示します。
         /// </summary>
         /// <param name="formType">フォームタイプ。</param>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
-        private void ShowInternal(Type formType, Func<Form> ownerProvider)
+        /// <param name="owner">オーナー。</param>
+        protected virtual void ShowInternal(Type formType, Form owner)
         {
             var form = CreateFormInstance(formType);
 
-            if (ownerProvider?.Invoke() is Form ownerForm)
+            if (owner != null)
             {
-                form.Show(ownerForm);
+                form.Show(owner);
                 return;
             }
 
@@ -222,9 +236,9 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <typeparam name="T">リクエスト。</typeparam>
         /// <param name="formType">フォームタイプ。</param>
         /// <param name="request">リクエスト。</param>
-        /// <param name="ownerProvider">オーナープロバイダー。</param>
+        /// <param name="owner">オーナー。</param>
         /// <exception cref="InvalidOperationException"><paramref name="formType"/>が<see cref="IDialogRequest{T}"/>を実装していない。</exception>
-        private static void ShowWithRequestInternal<T>(Type formType, T request, Func<Form> ownerProvider)
+        protected virtual void ShowWithRequestInternal<T>(Type formType, T request, Form owner)
         {
             EnsureRequestInterface<T>(formType);
 
@@ -232,9 +246,9 @@ namespace Metroit.Mvvm.WinForms.ViewModels
             var dialogRequest = (IDialogRequest<T>)form;
             dialogRequest.Request = request;
 
-            if (ownerProvider?.Invoke() is Form ownerForm)
+            if (owner != null)
             {
-                form.Show(ownerForm);
+                form.Show(owner);
                 return;
             }
 
@@ -246,7 +260,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// アクティブ化するダイアログが開かれていないとき、または非表示のときは何も行いません。
         /// </summary>
         /// <param name="formType">フォームタイプ。</param>
-        private static void ActivateInternal(Type formType)
+        protected virtual void ActivateInternal(Type formType)
         {
             var form = Application.OpenForms
                 .OfType<Form>()
@@ -276,7 +290,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <param name="formType">フォームタイプ。</param>
         /// <param name="param">パラメーター。</param>
         /// <exception cref="InvalidOperationException"><paramref name="param"/>が<see cref="IDialogActivateAction{T}"/>を実装していない。</exception>
-        private static void ActivateWithActionInternal<T>(Type formType, T param)
+        protected virtual void ActivateWithActionInternal<T>(Type formType, T param)
         {
             var form = Application.OpenForms
                 .OfType<Form>()
@@ -307,7 +321,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// モーダルダイアログを表示します。
         /// </summary>
         /// <param name="formType">フォームタイプ。</param>
-        private static void ShowDialogInternal(Type formType)
+        protected virtual void ShowDialogInternal(Type formType)
         {
             var form = CreateFormInstance(formType);
             form.ShowDialog();
@@ -320,7 +334,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <param name="formType">フォームタイプ。</param>
         /// <param name="request">リクエスト。</param>
         /// <exception cref="InvalidOperationException"><paramref name="formType"/>が<see cref="IDialogRequest{T}"/>を実装していない。</exception>
-        private static void ShowDialogWithRequestInternal<T>(Type formType, T request)
+        protected virtual void ShowDialogWithRequestInternal<T>(Type formType, T request)
         {
             EnsureRequestInterface<T>(formType);
 
@@ -337,7 +351,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <param name="formType">フォームタイプ。</param>
         /// <returns>レスポンス。</returns>
         /// <exception cref="InvalidOperationException"><paramref name="formType"/>が<see cref="IDialogResponse{T}"/>を実装していない。</exception>
-        private static T ShowDialogWithResponseInternal<T>(Type formType)
+        protected virtual T ShowDialogWithResponseInternal<T>(Type formType)
         {
             EnsureResponseInterface<T>(formType);
 
@@ -356,7 +370,7 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         /// <param name="request">リクエスト。</param>
         /// <returns>レスポンス。</returns>
         /// <exception cref="InvalidOperationException"><paramref name="formType"/>が<see cref="IDialogRequest{T}"/>と<see cref="IDialogResponse{T}"/>を実装していない。</exception>
-        private static T2 ShowDialogWithRequestAndResponseInternal<T1, T2>(Type formType, T1 request)
+        protected virtual T2 ShowDialogWithRequestAndResponseInternal<T1, T2>(Type formType, T1 request)
         {
             EnsureRequestInterface<T1>(formType);
             EnsureResponseInterface<T2>(formType);
