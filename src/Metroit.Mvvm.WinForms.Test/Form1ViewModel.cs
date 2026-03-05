@@ -64,7 +64,7 @@ namespace Metroit.Mvvm.WinForms.Test
                 return;
             }
 
-            ViewService.Dialog.ShowWithOwner<Form2, TestDialogRequest>(req);
+            ViewService.Dialog.ShowByOwner<Form2, TestDialogRequest>(req);
         }
 
         public void Close()

@@ -28,10 +28,10 @@ namespace Metroit.Mvvm.Interfaces.Generic
         void Show<T>() where T : TDialog, new();
 
         /// <summary>
-        /// モーダレスダイアログを表示します。
+        /// オーナー上にモーダレスダイアログを表示します。
         /// </summary>
         /// <typeparam name="T">ダイアログ。</typeparam>
-        void ShowWithOwner<T>() where T : TDialog, new();
+        void ShowByOwner<T>() where T : TDialog, new();
 
         /// <summary>
         /// リクエストを持つモーダレスダイアログを表示します。
@@ -42,12 +42,12 @@ namespace Metroit.Mvvm.Interfaces.Generic
         void Show<T1, T2>(T2 request) where T1 : TDialog, IDialogRequest<T2>, new();
 
         /// <summary>
-        /// リクエストを持つモーダレスダイアログを表示します。
+        /// オーナー上にリクエストを持つモーダレスダイアログを表示します。
         /// </summary>
         /// <typeparam name="T1">ダイアログ。</typeparam>
         /// <typeparam name="T2">リクエスト。</typeparam>
         /// <param name="request">リクエスト。</param>
-        void ShowWithOwner<T1, T2>(T2 request) where T1 : TDialog, IDialogRequest<T2>, new();
+        void ShowByOwner<T1, T2>(T2 request) where T1 : TDialog, IDialogRequest<T2>, new();
 
         /// <summary>
         /// モーダレスダイアログをアクティブ化します。

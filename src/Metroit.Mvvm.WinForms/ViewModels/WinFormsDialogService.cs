@@ -70,10 +70,10 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         }
 
         /// <summary>
-        /// モーダレスダイアログを表示します。
+        /// オーナー上にモーダレスダイアログを表示します。
         /// </summary>
         /// <typeparam name="T">フォーム。</typeparam>
-        public void ShowWithOwner<T>() where T : Form, new()
+        public void ShowByOwner<T>() where T : Form, new()
         {
             ShowInternal(typeof(T), (Form)Owner);
         }
@@ -90,12 +90,12 @@ namespace Metroit.Mvvm.WinForms.ViewModels
         }
 
         /// <summary>
-        /// リクエストを持つモーダレスダイアログを表示します。
+        /// オーナー上にリクエストを持つモーダレスダイアログを表示します。
         /// </summary>
         /// <typeparam name="T1">フォーム。</typeparam>
         /// <typeparam name="T2">リクエスト。</typeparam>
         /// <param name="request">リクエスト。</param>
-        public void ShowWithOwner<T1, T2>(T2 request) where T1 : Form, IDialogRequest<T2>, new()
+        public void ShowByOwner<T1, T2>(T2 request) where T1 : Form, IDialogRequest<T2>, new()
         {
             ShowWithRequestInternal(typeof(T1), request, (Form)Owner);
         }
