@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Metroit.Annotations;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Metroit.CommunityToolkit.Mvvm.Test
 {
@@ -13,6 +15,11 @@ namespace Metroit.CommunityToolkit.Mvvm.Test
             };
             ChangeTracker.SomethingValueChanged = (isChanged) => IsChanged = isChanged;
             ChangeTracker.Reset();
+
+            PropertyChanged += (sender, e) =>
+            {
+                Debug.WriteLine($"{Text}, {Text2}");
+            };
         }
 
         [ObservableProperty]
@@ -36,5 +43,10 @@ namespace Metroit.CommunityToolkit.Mvvm.Test
 
         [ObservableProperty]
         private bool _isChanged;
+
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+        }
     }
 }

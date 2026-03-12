@@ -7,7 +7,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides convenient functions using CommunityToolkit.Mvvm.</Description>
     <Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>0.0.4</VersionPrefix>
+    <VersionPrefix>0.0.5</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
@@ -16,13 +16,21 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Modify
+      - In TrackingObservableObject, the control required for property change notifications is overridden by OnPropertyChanged(), and modified to control it before the inherited method is executed.
+      - In StatefulTrackingObservableObject, the control required for property change notifications is overridden by OnPropertyChanged(), and modified to control it before the inherited method is executed.
+      - In TrackingObservableRecipient, the control required for property change notifications has been modified to override OnPropertyChanged() and control it before the inherited method is executed.
+      - In StatefulTrackingObservableRecipient, the control required for property change notifications has been modified to override OnPropertyChanged() and control it before the inherited method is executed.
+      - In TrackingObservableValidator, the control required for property change notifications has been modified to override OnPropertyChanged() and control it before the inherited method is executed.
+      - In StatefulTrackingObservableValidator, the control required for property change notifications is overridden by OnPropertyChanged(), and modified to control it before the inherited method is executed.
+    </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Metroit" Version="4.1.0" />
+    <PackageReference Include="Metroit" Version="4.1.1" />
   </ItemGroup>
 
   <ItemGroup>

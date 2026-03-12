@@ -7,7 +7,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>Provides convenient functions using ReactiveProperty.</Description>
     <Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>0.0.4</VersionPrefix>
+    <VersionPrefix>0.0.5</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
@@ -16,12 +16,15 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>
+      Modify
+      - In StatefulReactiveTrackingObject, the control required for property change notifications is overridden by OnPropertyChanged(), and modified to control it before the inherited method is executed.
+    </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Metroit" Version="4.1.0" />
+    <PackageReference Include="Metroit" Version="4.1.1" />
     <PackageReference Include="ReactiveProperty" Version="9.8.0" />
   </ItemGroup>
 </Project>

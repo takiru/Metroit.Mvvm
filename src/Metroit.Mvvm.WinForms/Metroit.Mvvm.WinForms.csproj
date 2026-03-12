@@ -8,7 +8,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It provides functionality to easily implement MVVM in Windows Forms.</Description>
     <Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>0.0.4</VersionPrefix>
+    <VersionPrefix>0.0.5</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>

@@ -1,5 +1,7 @@
 ﻿using Metroit.ReactiveProperty.ChangeTracking;
 using Reactive.Bindings;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Metroit.ReactiveProperty.Test
 {
@@ -16,6 +18,16 @@ namespace Metroit.ReactiveProperty.Test
         {
             InitializePropertyTracking();
             ChangeTracker.Reset();
+
+            PropertyChanged += (sender, e) =>
+            {
+                Debug.WriteLine($"{State}, {Name}, {Age}, {Hoge}");
+            };
+        }
+
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
         }
     }
 }

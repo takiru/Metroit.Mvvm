@@ -1,6 +1,8 @@
 ﻿using Metroit.Annotations;
 using Metroit.ChangeTracking.Generic;
 using Metroit.CommunityToolkit.Mvvm.ChangeTracking;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Metroit.CommunityToolkit.Mvvm.Test
 {
