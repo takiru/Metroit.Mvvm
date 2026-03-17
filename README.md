@@ -2,11 +2,11 @@
 
 |Module                |NuGet | Target Framework |
 |----------------------|------|------------------|
-|Metroit.Mvvm               |[![NuGet](https://img.shields.io/badge/nuget-v0.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm/) | `net6.0` `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` |
-|Metroit.Mvvm.WinForms          |[![NuGet](https://img.shields.io/badge/nuget-v0.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm.WinForms/) | `net8.0-windows` `net462` |
-|Metroit.CommunityToolkit.Mvvm |[![NuGet](https://img.shields.io/badge/nuget-v0.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.CommunityToolkit.Mvvm/) | `net8.0` `netstandard2.0` `netstandard2.1` |
-|Metroit.Windows.Forms.Mvvm|[![NuGet](https://img.shields.io/badge/nuget-v0.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm/) | `net6.0-windows` `net8.0-windows` `net462` |
-|Metroit.ReactiveProperty|[![NuGet](https://img.shields.io/badge/nuget-v0.0.5-blue.svg)](https://www.nuget.org/packages/Metroit.ReactiveProperty/) | `net8.0` `netstandard2.0` `netstandard2.1` |
+|Metroit.Mvvm               |[![NuGet](https://img.shields.io/badge/nuget-v0.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm/) | `net6.0` `net8.0` `net9.0` `netstandard2.0` `netstandard2.1` |
+|Metroit.Mvvm.WinForms          |[![NuGet](https://img.shields.io/badge/nuget-v0.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.Mvvm.WinForms/) | `net8.0-windows` `net462` |
+|Metroit.CommunityToolkit.Mvvm |[![NuGet](https://img.shields.io/badge/nuget-v0.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.CommunityToolkit.Mvvm/) | `net8.0` `netstandard2.0` `netstandard2.1` |
+|Metroit.Windows.Forms.Mvvm|[![NuGet](https://img.shields.io/badge/nuget-v0.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.Windows.Forms.Mvvm/) | `net6.0-windows` `net8.0-windows` `net462` |
+|Metroit.ReactiveProperty|[![NuGet](https://img.shields.io/badge/nuget-v0.0.6-blue.svg)](https://www.nuget.org/packages/Metroit.ReactiveProperty/) | `net8.0` `netstandard2.0` `netstandard2.1` |
 
 ## Metroit.Mvvm Description
 - DialogResultType
@@ -33,6 +33,7 @@ It helps in binding the properties of a class to the DataBinding of a control.
   - Extensions.ListControlExtensions
   - Extensions.PropertyBindExtensions
   - Extensions.RadioButtonExtensions
+  - Extensions.ToolStripItemExtensions
 
     ```
     Extensions.PropertyBindExtensions allows you to create Extensions that are not provided.

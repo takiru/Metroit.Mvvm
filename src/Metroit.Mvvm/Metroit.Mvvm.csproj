@@ -7,7 +7,7 @@
     <Authors>Takeru Yamaguchi</Authors>
     <Description>It provides simple, standard objects used in MVVM.</Description>
     <Copyright>Copyright ©  2025 Takeru Yamaguchi</Copyright>
-    <VersionPrefix>0.0.5</VersionPrefix>
+    <VersionPrefix>0.0.6</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <PackageProjectUrl>https://github.com/takiru/Metroit.Mvvm</PackageProjectUrl>
@@ -16,7 +16,9 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>
+      small released.
+    </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
