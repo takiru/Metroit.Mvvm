@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Metroit.Mvvm.WinForms.Extensions
@@ -12,27 +14,36 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <summary>
         /// チェック状態をバインドします。
         /// </summary>
+        /// <typeparam name="T">バインドする型。</typeparam>
         /// <param name="toolStripButton">ツールストリップボタンオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindChecked(this ToolStripButton toolStripButton, Expression<Func<bool>> expression)
+        public static void BindChecked<T>(this ToolStripButton toolStripButton, Expression<Func<T>> expression)
         {
-            var lambda = expression as LambdaExpression;
-            if (lambda == null)
-            {
-                throw new ArgumentException("There is an error in your lambda expression.");
-            }
-            var property = lambda.Body as MemberExpression;
-            if (property == null)
-            {
-                throw new ArgumentException("It was not possible to obtain a member from a lambda expression.");
-            }
-            var parent = property.Expression;
-            var expressionObjectInfo = (Object: Expression.Lambda(parent).Compile().DynamicInvoke(), property.Member.Name);
+            var expressionInfo = ExpressionAnalyzer.GetExpressionInfo(expression);
 
-            var expressionObject = expressionObjectInfo.Object;
-            var expressionProperty = expressionObject.GetType().GetProperty(expressionObjectInfo.Name);
+            // UI -> VM
+            toolStripButton.CheckedChanged += (sender, e) => expressionInfo.Info.SetValue(expressionInfo.Value, toolStripButton.Checked);
 
-            toolStripButton.CheckedChanged += (sender, e) => expressionProperty.SetValue(expressionObject, toolStripButton.Checked);
+            // VM -> UI
+            if (expressionInfo.Value is INotifyPropertyChanged notifyObject)
+            {
+                notifyObject.PropertyChanged += (sender, e) =>
+                {
+                    if (e.PropertyName != expressionInfo.Info.Name)
+                    {
+                        return;
+                    }
+
+                    var newValue = (bool)expressionInfo.Info.GetValue(expressionInfo.Value);
+                    if (toolStripButton.Checked != newValue)
+                    {
+                        toolStripButton.Checked = newValue;
+                    }
+                };
+            }
+
+            // 初期値をVMから反映
+            toolStripButton.Checked = (bool)expressionInfo.Info.GetValue(expressionInfo.Value);
         }
     }
 }

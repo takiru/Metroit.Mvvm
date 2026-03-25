@@ -7,6 +7,17 @@ namespace Metroit.ReactiveProperty.Test
 {
     public class Record : StatefulReactiveTrackingObject<Record, ReactivePropertyChangeTracker<Record>>
     {
+        public ReactiveProperty<bool> ButtonEnabled { get; private set; } = new ReactiveProperty<bool>();
+
+        public ReactiveProperty<bool> ButtonVisible { get; private set; } = new ReactiveProperty<bool>();
+
+        public ReactiveProperty<bool> CheckButtonEnabled { get; private set; } = new ReactiveProperty<bool>();
+
+        public ReactiveProperty<bool> CheckButtonVisible { get; private set; } = new ReactiveProperty<bool>();
+
+        public ReactiveProperty<bool> CheckButtonChecked { get; private set; } = new ReactiveProperty<bool>();
+
+
         public ReactiveProperty<string> Name { get; private set; } = new ReactiveProperty<string>();
 
         public ReactiveProperty<int> Age { get; set; } = new ReactiveProperty<int>();

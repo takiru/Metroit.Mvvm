@@ -104,10 +104,10 @@ namespace Metroit.Mvvm.WinForms.Extensions
             var targetControlInfo = ResolveLambda(targetPropertyExpression);
             var expressionObjectInfo = ResolveLambda(bindPropertyExpression);
 
-            var control = targetControlInfo.Control as Control;
+            var control = targetControlInfo.Control as IBindableComponent;
             if (control == null)
             {
-                throw new ArgumentException("The object resulting from a lambda expression is not a Control object.");
+                throw new ArgumentException("Objects generated from lambda expressions do not implement the IBindableComponent interface.");
             }
 
             var binding = new Binding(targetControlInfo.PropertyName, expressionObjectInfo.Control, expressionObjectInfo.PropertyName);

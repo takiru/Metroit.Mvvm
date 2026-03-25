@@ -13,7 +13,7 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <summary>
         /// テキストをバインドします。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">バインドする型。</typeparam>
         /// <param name="control">コントロールオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
         public static void BindText<T>(this Control control, Expression<Func<T>> expression)
@@ -24,6 +24,7 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <summary>
         /// 活性状態をバインドします。
         /// </summary>
+        /// <typeparam name="T">バインドする型。</typeparam>
         /// <param name="control">コントロールオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
         public static void BindEnabled<T>(this Control control, Expression<Func<T>> expression)
@@ -34,7 +35,7 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <summary>
         /// 表示状態をバインドします。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">バインドする型。</typeparam>
         /// <param name="control">コントロールオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
         public static void BindVisible<T>(this Control control, Expression<Func<T>> expression)
