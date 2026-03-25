@@ -12,7 +12,6 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <summary>
         /// チェック状態をバインドします。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="toolStripButton">ツールストリップボタンオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
         public static void BindChecked(this ToolStripButton toolStripButton, Expression<Func<bool>> expression)

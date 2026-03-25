@@ -20,6 +20,11 @@ namespace Metroit.CommunityToolkit.Mvvm.Test
             {
                 Debug.WriteLine($"{Text}, {Text2}");
             };
+
+            StateChanged += (sender, e) =>
+            {
+                Debug.WriteLine($"StateChanged!: {e.State}");
+            };
         }
 
         [ObservableProperty]
