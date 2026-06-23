@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Metroit.Mvvm.WinForms.Extensions;
 
 namespace Metroit.Windows.Forms.Mvvm.Extensions
 {
