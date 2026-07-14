@@ -16,12 +16,12 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <param name="listControl">リストコントロールオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
         /// <param name="valueMember">値のメンバ名。</param>
-        /// <param name="displayMenber">表示値のメンバ名。</param>
-        public static void BindDataSource<T>(this ListControl listControl, Expression<Func<T>> expression, string valueMember, string displayMenber)
+        /// <param name="displayMember">表示値のメンバ名。</param>
+        public static void BindDataSource<T>(this ListControl listControl, Expression<Func<T>> expression, string valueMember = "Value", string displayMember = "Text")
         {
             PropertyBindExtensions.Bind(() => listControl.DataSource, expression);
             listControl.ValueMember = valueMember;
-            listControl.DisplayMember = displayMenber;
+            listControl.DisplayMember = displayMember;
         }
     }
 }

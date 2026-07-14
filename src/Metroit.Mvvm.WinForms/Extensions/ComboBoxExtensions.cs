@@ -19,5 +19,16 @@ namespace Metroit.Mvvm.WinForms.Extensions
         {
             PropertyBindExtensions.Bind(() => comboBox.SelectedItem, expression);
         }
+
+        /// <summary>
+        /// 選択値をバインドします。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="comboBox">コンボボックスオブジェクト。</param>
+        /// <param name="expression">バインドする値の式木。</param>
+        public static void BindSelectedValue<T>(this ComboBox comboBox, Expression<Func<T>> expression)
+        {
+            PropertyBindExtensions.Bind(() => comboBox.SelectedValue, expression);
+        }
     }
 }
