@@ -44,6 +44,17 @@ namespace Metroit.Mvvm.WinForms.Extensions
         }
 
         /// <summary>
+        /// タブストップをバインドします。
+        /// </summary>
+        /// <typeparam name="T">バインドする型。</typeparam>
+        /// <param name="control">コントロールオブジェクト。</param>
+        /// <param name="expression">バインドする値の式木。</param>
+        public static void BindTabStop<T>(this Control control, Expression<Func<T>> expression)
+        {
+            PropertyBindExtensions.Bind(() => control.TabStop, expression);
+        }
+
+        /// <summary>
         /// クリックをバインドします。
         /// </summary>
         /// <param name="control">コントロールオブジェクト。</param>
