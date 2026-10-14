@@ -14,9 +14,19 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// </summary>
         /// <param name="textBox">テキストボックスオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindReadOnly<T>(this TextBoxBase textBox, Expression<Func<T>> expression)
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void BindReadOnly<T>(this TextBoxBase textBox, Expression<Func<T>> expression,
+            ConvertEventHandler format = null)
         {
-            PropertyBindExtensions.Bind(() => textBox.ReadOnly, expression);
+            if (format == null)
+            {
+                PropertyBindExtensions.Bind(() => textBox.ReadOnly, expression);
+            }
+            else
+            {
+                PropertyBindExtensions.Bind(() => textBox.ReadOnly, expression, true, format);
+            }
+
         }
     }
 }

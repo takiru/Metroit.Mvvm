@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Metroit.Mvvm.WinForms.Extensions;
+using System;
 using System.Linq.Expressions;
-using Metroit.Mvvm.WinForms.Extensions;
+using System.Windows.Forms;
 
 namespace Metroit.Windows.Forms.Mvvm.Extensions
 {
@@ -15,9 +16,18 @@ namespace Metroit.Windows.Forms.Mvvm.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="toggleSwitch">トグルスイッチオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindChecked<T>(this MetToggleSwitch toggleSwitch, Expression<Func<T>> expression)
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void BindChecked<T>(this MetToggleSwitch toggleSwitch, Expression<Func<T>> expression,
+            ConvertEventHandler format = null)
         {
-            PropertyBindExtensions.Bind(() => toggleSwitch.Checked, expression);
+            if (format == null)
+            {
+                PropertyBindExtensions.Bind(() => toggleSwitch.Checked, expression);
+            }
+            else
+            {
+                PropertyBindExtensions.Bind(() => toggleSwitch.Checked, expression, true, format);
+            }
         }
     }
 }

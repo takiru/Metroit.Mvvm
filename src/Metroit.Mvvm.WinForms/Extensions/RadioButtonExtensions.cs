@@ -15,9 +15,18 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="radioButton">ラジオボタンオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindChecked<T>(this RadioButton radioButton, Expression<Func<T>> expression)
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void BindChecked<T>(this RadioButton radioButton, Expression<Func<T>> expression,
+            ConvertEventHandler format = null)
         {
-            PropertyBindExtensions.Bind(() => radioButton.Checked, expression);
+            if (format == null)
+            {
+                PropertyBindExtensions.Bind(() => radioButton.Checked, expression);
+            }
+            else
+            {
+                PropertyBindExtensions.Bind(() => radioButton.Checked, expression, true, format);
+            }
         }
     }
 }

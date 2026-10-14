@@ -15,9 +15,18 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="checkBox">チェックボックスオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindChecked<T>(this CheckBox checkBox, Expression<Func<T>> expression)
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void BindChecked<T>(this CheckBox checkBox, Expression<Func<T>> expression,
+            ConvertEventHandler format = null)
         {
-            PropertyBindExtensions.Bind(() => checkBox.Checked, expression);
+            if (format == null)
+            {
+                PropertyBindExtensions.Bind(() => checkBox.Checked, expression);
+            }
+            else
+            {
+                PropertyBindExtensions.Bind(() => checkBox.Checked, expression, true, format);
+            }
         }
 
         /// <summary>

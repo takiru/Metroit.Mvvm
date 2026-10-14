@@ -19,7 +19,7 @@ namespace Metroit.Mvvm.WinForms.Extensions
         public static void Bind<T, U>(Expression<Func<T>> targetPropertyExpression, Expression<Func<U>> bindPropertyExpression)
         {
             Bind(targetPropertyExpression, bindPropertyExpression, false, DataSourceUpdateMode.OnPropertyChanged,
-                string.Empty, null);
+                string.Empty, null, null);
         }
 
         /// <summary>
@@ -34,7 +34,25 @@ namespace Metroit.Mvvm.WinForms.Extensions
             bool formattingEnabled)
         {
             Bind(targetPropertyExpression, bindPropertyExpression, formattingEnabled, DataSourceUpdateMode.OnPropertyChanged,
-                string.Empty, null);
+                string.Empty, null, null);
+        }
+
+        /// <summary>
+        /// プロパティをバインドします。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="targetPropertyExpression">バインド対象とするプロパティの式木。</param>
+        /// <param name="bindPropertyExpression">バインドする値の式木。</param>
+        /// <param name="formattingEnabled">表示されるデータの書式を指定する場合は true。それ以外の場合は false。既定は false です。</param>
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void Bind<T, U>(Expression<Func<T>> targetPropertyExpression,
+            Expression<Func<U>> bindPropertyExpression,
+            bool formattingEnabled, ConvertEventHandler format)
+        {
+            Bind(targetPropertyExpression, bindPropertyExpression, formattingEnabled,
+                DataSourceUpdateMode.OnPropertyChanged,
+                string.Empty, null, format);
         }
 
         /// <summary>
@@ -50,7 +68,7 @@ namespace Metroit.Mvvm.WinForms.Extensions
             bool formattingEnabled, DataSourceUpdateMode dataSourceUpdateMode)
         {
             Bind(targetPropertyExpression, bindPropertyExpression, formattingEnabled, dataSourceUpdateMode,
-                string.Empty, null);
+                string.Empty, null, null);
         }
 
         /// <summary>
@@ -67,7 +85,7 @@ namespace Metroit.Mvvm.WinForms.Extensions
             bool formattingEnabled, DataSourceUpdateMode dataSourceUpdateMode, string formatString)
         {
             Bind(targetPropertyExpression, bindPropertyExpression, formattingEnabled, dataSourceUpdateMode,
-                formatString, null);
+                formatString, null, null);
         }
 
         /// <summary>
@@ -81,9 +99,10 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <param name="dataSourceUpdateMode"><see cref="DataSourceUpdateMode"/> 値のいずれか 1 つ。既定は <see cref="DataSourceUpdateMode.OnPropertyChanged"/> です。</param>
         /// <param name="formatString">値の表示方法を示す 1 つ以上の書式指定子文字。既定は <see cref="string.Empty"/> です。</param>
         /// <param name="formatInfo">既定の書式指定動作をオーバーライドする <see cref="IFormatProvider"/> の実装。既定は null です。</param>
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
         public static void Bind<T, U>(Expression<Func<T>> targetPropertyExpression, Expression<Func<U>> bindPropertyExpression,
             bool formattingEnabled, DataSourceUpdateMode dataSourceUpdateMode, string formatString,
-            IFormatProvider formatInfo)
+            IFormatProvider formatInfo, ConvertEventHandler format)
         {
             (object Control, string PropertyName) ResolveLambda<V>(Expression<Func<V>> expression)
             {
@@ -115,6 +134,11 @@ namespace Metroit.Mvvm.WinForms.Extensions
             binding.FormatString = formatString;
             binding.DataSourceUpdateMode = dataSourceUpdateMode;
             binding.FormatInfo = formatInfo;
+
+            if (format != null)
+            {
+                binding.Format += format;
+            }
 
             control.DataBindings.Add(binding);
         }

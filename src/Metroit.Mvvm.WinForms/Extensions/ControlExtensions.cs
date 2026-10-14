@@ -27,9 +27,18 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <typeparam name="T">バインドする型。</typeparam>
         /// <param name="control">コントロールオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindEnabled<T>(this Control control, Expression<Func<T>> expression)
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void BindEnabled<T>(this Control control, Expression<Func<T>> expression,
+            ConvertEventHandler format = null)
         {
-            PropertyBindExtensions.Bind(() => control.Enabled, expression);
+            if (format == null)
+            {
+                PropertyBindExtensions.Bind(() => control.Enabled, expression);
+            }
+            else
+            {
+                PropertyBindExtensions.Bind(() => control.Enabled, expression, true, format);
+            }
         }
 
         /// <summary>
@@ -38,9 +47,18 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <typeparam name="T">バインドする型。</typeparam>
         /// <param name="control">コントロールオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindVisible<T>(this Control control, Expression<Func<T>> expression)
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void BindVisible<T>(this Control control, Expression<Func<T>> expression,
+            ConvertEventHandler format = null)
         {
-            PropertyBindExtensions.Bind(() => control.Visible, expression);
+            if (format == null)
+            {
+                PropertyBindExtensions.Bind(() => control.Visible, expression);
+            }
+            else
+            {
+                PropertyBindExtensions.Bind(() => control.Visible, expression, true, format);
+            }
         }
 
         /// <summary>
@@ -49,9 +67,18 @@ namespace Metroit.Mvvm.WinForms.Extensions
         /// <typeparam name="T">バインドする型。</typeparam>
         /// <param name="control">コントロールオブジェクト。</param>
         /// <param name="expression">バインドする値の式木。</param>
-        public static void BindTabStop<T>(this Control control, Expression<Func<T>> expression)
+        /// <param name="format">コントロールのプロパティがデータ値にバインドされたときに発生します。</param>
+        public static void BindTabStop<T>(this Control control, Expression<Func<T>> expression,
+            ConvertEventHandler format = null)
         {
-            PropertyBindExtensions.Bind(() => control.TabStop, expression);
+            if (format == null)
+            {
+                PropertyBindExtensions.Bind(() => control.TabStop, expression);
+            }
+            else
+            {
+                PropertyBindExtensions.Bind(() => control.TabStop, expression, true, format);
+            }
         }
 
         /// <summary>
